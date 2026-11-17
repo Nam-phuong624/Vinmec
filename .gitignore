@@ -1,0 +1,16 @@
+# Local agent instructions and specification
+agent.md
+spec.md
+
+# Prototype data
+/Prototype/Data/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor temporary files
+*.swp
+*.swo
+*~

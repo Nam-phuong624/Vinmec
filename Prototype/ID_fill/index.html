@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Demo tiếp nhận thông tin từ QR CCCD và đối chiếu địa chỉ sau sáp nhập theo dữ liệu NSO.">
+  <title>Tiếp nhận thông minh · QR CCCD</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="patient-profile.css">
+  <script defer src="vendor/jsQR.js"></script>
+  <script defer src="vendor/zxing.js"></script>
+  <script defer src="vendor/qrcode.js"></script>
+  <script defer src="data.js"></script>
+  <script defer src="history.js"></script>
+  <script defer src="core.js"></script>
+  <script defer src="research-history.js"></script>
+  <script defer src="research-mapper.js"></script>
+  <script defer src="app.js"></script>
+  <script defer src="patient-profile.js"></script>
+  <script defer src="pair.js"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./"><span class="brand-mark">✚</span><span>VINMEC<small>DEMO TIẾP NHẬN</small></span></a><span class="prototype">BẢN THỬ NGHIỆM</span><div class="privacy"><span class="dot"></span> Ảnh không rời thiết bị</div></header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">TIẾP ĐÓN NGƯỜI BỆNH</p><h1>Từ căn cước đến địa chỉ mới.</h1><p>Quét mã QR, đọc thông tin và đối chiếu địa chỉ sau sáp nhập.</p></div><button id="reset" class="secondary">↻ Bắt đầu lại</button></div>
+    <ol class="steps" aria-label="Tiến trình"><li class="active" id="step1"><b>01</b> Quét căn cước</li><li id="step2"><b>02</b> Đối chiếu địa chỉ</li><li id="step3"><b>03</b> Xác nhận thông tin</li></ol>
+    <div class="workspace">
+      <section class="panel scan-panel" aria-labelledby="scan-title">
+        <div id="desktop-pair" class="pair-box">
+          <h2>Quét bằng điện thoại</h2><p class="helper">Điện thoại và máy tính cùng Wi-Fi. Điện thoại đọc QR, máy tính nhận thông tin.</p><p id="transport-status" class="helper">Dùng dữ liệu giả trên mạng riêng tin cậy trong bản demo.</p>
+          <button id="create-pair" class="primary full">Ghép điện thoại</button>
+          <div id="pair-session" hidden>
+            <label for="phone-network">Địa chỉ mạng của máy tính</label><select id="phone-network"></select>
+            <canvas id="pair-qr" width="250" height="250" aria-label="Mã QR mở trang quét trên điện thoại"></canvas>
+            <p class="helper">Dùng camera điện thoại quét mã phía trên, hoặc mở đường dẫn và nhập mã:</p>
+            <a id="phone-link" href="#"></a><strong id="pair-code" class="pair-code"></strong>
+            <p class="helper">Phiên có hiệu lực 10 phút, gửi được nhiều lượt ảnh. Kiểm tra thông tin trên máy tính trước khi xác nhận.</p>
+            <button id="cancel-pair" class="secondary full">Hủy ghép nối</button>
+          </div>
+          <p id="pair-status" class="helper" role="status"></p>
+        </div>
+        <div id="mobile-pair" class="pair-box" hidden>
+          <h2>Gửi thông tin về máy tính</h2>
+          <p id="mobile-transport" class="helper">Dùng dữ liệu giả trong bản demo.</p>
+          <div id="phone-join"><label for="join-code">Mã ghép trên máy tính</label><input id="join-code" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="Nhập 8 chữ số"><button id="join-pair" class="primary full">Kết nối máy tính</button></div>
+          <div id="phone-connected" hidden><p class="helper">Chụp hoặc chọn ảnh mặt CCCD có QR. Kiểm tra thông tin đọc được rồi bấm gửi; ảnh được xử lý trên điện thoại.</p><button id="phone-photo" class="primary full">Chụp ảnh CCCD</button><input id="phone-photo-file" type="file" accept="image/*" capture="environment" hidden><button id="phone-gallery" class="secondary full">Chọn ảnh có sẵn</button><input id="phone-gallery-file" type="file" accept="image/*" hidden><button id="send-phone" class="primary full" disabled>Gửi sang máy tính</button></div>
+          <p id="phone-status" class="helper" role="status"></p>
+        </div>
+        <div class="panel-heading"><span class="icon-box">▦</span><div><h2 id="scan-title">Đọc mã QR từ ảnh CCCD</h2><p>Chọn ảnh CCCD hoặc nhận từ điện thoại</p></div></div>
+        <div class="scan-actions"><button id="upload" class="primary full">Chọn ảnh CCCD</button><input id="image-file" type="file" accept="image/*" hidden></div>
+        <p class="helper">Chọn ảnh toàn bộ mặt thẻ có mã QR hoặc ảnh cận mã QR. Hệ thống tự tìm mã để đọc thông tin; ảnh cần rõ nét, không lóa.</p>
+        <p id="scan-status" class="helper" role="status">Ảnh xử lý trên thiết bị. Chỉ gửi chuỗi QR về máy tính khi bạn bấm gửi trong phiên ghép nối.</p>
+        <details id="reader-details"><summary>Dùng đầu đọc USB / nhập chuỗi QR</summary><label for="payload">Nội dung mã QR</label><textarea id="payload" rows="4" spellcheck="false" placeholder="Số CCCD|CMND cũ|Họ tên|DDMMYYYY|Giới tính|Địa chỉ|DDMMYYYY"></textarea><button id="parse" class="primary full">Đọc thông tin & đối chiếu</button><p class="helper">Đặt con trỏ vào ô, quét bằng đầu đọc rồi nhấn Enter.</p></details>
+        <div class="samples"><p class="eyebrow">THỬ NGAY VỚI DỮ LIỆU GIẢ LẬP</p><button data-sample="exact"><span class="sample-dot green"></span><span>Ánh xạ rõ ràng<small>Trúc Bạch → Ba Đình</small></span><span>↗</span></button><button data-sample="partial"><span class="sample-dot amber"></span><span>Cần kiểm tra thêm<small>Phường cũ chia sang nhiều phường mới</small></span><span>↗</span></button><button data-sample="missing"><span class="sample-dot gray"></span><span>Chưa đủ địa chỉ<small>Thiếu xã/phường trên dữ liệu đầu vào</small></span><span>↗</span></button><button data-sample="historical"><span class="sample-dot green"></span><span>Địa chỉ qua nhiều lần sáp nhập<small>Bình Xá, Bình Phú → Tây Phương</small></span><span>↗</span></button></div>
+      </section>
+      <section class="panel result-panel" aria-labelledby="result-title">
+        <div class="panel-heading"><span class="icon-box">≡</span><div><h2 id="result-title">Patient Profile</h2><p>Kiểm tra trước khi xác nhận</p></div><span id="result-badge" class="badge neutral">Chờ quét</span></div>
+        <div class="patient-profile" id="patient-profile">
+  <div class="profile-tabs" role="tablist" aria-label="Patient Profile">
+    <button type="button" id="tab-demographics" role="tab" aria-controls="profile-demographics" aria-selected="true">Demographics <span class="profile-required">●</span></button>
+    <button type="button" id="tab-care" role="tab" aria-controls="profile-care" aria-selected="false" tabindex="-1">Circle of Care</button>
+    <button type="button" id="tab-financial" role="tab" aria-controls="profile-financial" aria-selected="false" tabindex="-1">Financial</button>
+  </div>
+  <form id="profile-form" autocomplete="off">
+    <div id="profile-demographics" role="tabpanel" aria-labelledby="tab-demographics">
+      <details class="profile-section" open><summary>Identification Details</summary>
+        <div class="profile-row"><label for="profile-hospital-number">Hospital Number</label><input id="profile-hospital-number" data-profile placeholder="Số hồ sơ do bệnh viện cấp"></div>
+        <div class="profile-row"><label for="profile-first">Name (Local)<span class="profile-required">*</span></label><div class="profile-name">
+          <select id="profile-title" data-profile aria-label="Title (Local)"><option value="">Title</option><option>Ông</option><option>Bà</option><option>Trẻ em</option></select>
+          <input id="profile-first" data-profile placeholder="First Name / Tên" aria-label="First Name (Local)">
+          <input id="profile-middle" data-profile placeholder="Middle Name(s) / Tên đệm" aria-label="Middle Name(s) (Local)">
+          <input id="profile-last" data-profile placeholder="Last Name / Họ" aria-label="Last Name (Local)">
+        </div></div>
+        <div class="profile-row"><label for="profile-other-first">Name (Other)</label><div class="profile-name">
+          <select id="profile-other-title" data-profile aria-label="Title (Other)"><option value="">Title</option><option>Mr</option><option>Ms</option><option>Mrs</option></select>
+          <input id="profile-other-first" data-profile placeholder="First Name" aria-label="First Name (Other)">
+          <input id="profile-other-middle" data-profile placeholder="Middle Name(s)" aria-label="Middle Name(s) (Other)">
+          <input id="profile-other-last" data-profile placeholder="Last Name" aria-label="Last Name (Other)">
+        </div></div>
+        <div class="profile-row"><span class="profile-label">Name Status</span><div class="profile-segment" role="group" aria-label="Name Status"><button type="button" data-name-status="confirmed" aria-pressed="true">Confirmed</button><button type="button" data-name-status="temporary" aria-pressed="false">Temporary</button></div></div>
+        <div class="profile-row"><label for="profile-other-names">Other Names</label><input id="profile-other-names" data-profile placeholder="Tên khác (nếu có)"></div>
+        <div class="profile-row"><label for="profile-sex">Sex<span class="profile-required">*</span></label><select id="profile-sex" data-profile><option value="">Chọn giới tính</option><option>Nam</option><option>Nữ</option><option>Không rõ</option></select></div>
+        <div class="profile-row"><label for="profile-birth">Date of Birth<span class="profile-required">*</span></label><div class="profile-dob"><select aria-label="Độ chính xác ngày sinh"><option>Year, Month and Day</option></select><input id="profile-birth" data-profile inputmode="numeric" placeholder="DD/MM/YYYY" maxlength="10"><span>Age</span><output id="profile-age" aria-live="polite">—</output></div></div>
+        <div class="profile-row"><span class="profile-label">Official Documents</span><div><button type="button" class="profile-plus" data-toggle-profile="profile-documents" aria-expanded="false" aria-controls="profile-documents" aria-label="Hiện giấy tờ tùy thân">+</button><span class="profile-hint"> Add one or more official documents.</span></div></div>
+        <div id="profile-documents" class="profile-document" hidden><div class="profile-row"><label for="profile-document-number">CCCD</label><input id="profile-document-number" readonly></div><div class="profile-row"><label for="profile-document-issued">Ngày cấp</label><input id="profile-document-issued" readonly></div></div>
+        <div class="profile-row"><label for="profile-banner">Banner Indicators</label><select id="profile-banner" data-profile><option value="">Chưa chọn</option><option>Không có</option></select></div>
+      </details>
+      <details class="profile-section" open><summary>Contact Details</summary>
+        <div class="profile-row"><label for="profile-phone">Phone Numbers</label><div><div class="profile-phone"><select id="profile-phone-type" data-profile aria-label="Loại số điện thoại"><option>Di động</option><option>Nhà riêng</option></select><select id="profile-phone-country" data-profile aria-label="Mã quốc gia điện thoại"><option value="+84">+84 Việt Nam</option><option value="">Khác</option></select><input id="profile-phone" type="tel" data-profile placeholder="Số điện thoại"></div><div id="profile-extra-phones"></div><button type="button" class="profile-plus" id="profile-add-phone" aria-label="Thêm số điện thoại">+</button><span class="profile-hint"> Click + to add a new phone number.</span></div></div>
+        <div class="profile-row"><label for="profile-email">Email Addresses</label><div><div class="profile-segment" role="group" aria-label="Email status"><button type="button" data-email-status="unspecified" aria-pressed="true">Unspecified</button><button type="button" data-email-status="no-email" aria-pressed="false">Advised no email</button><button type="button" data-email-status="provided" aria-pressed="false">+ Add email</button></div><input id="profile-email" type="email" data-profile placeholder="Email" hidden></div></div>
+        <div class="profile-row"><span class="profile-label">Addresses<span class="profile-required">*</span></span><div><button type="button" class="profile-plus" data-toggle-profile="profile-address" aria-expanded="true" aria-controls="profile-address" aria-label="Hiện địa chỉ">−</button><label class="profile-inline"><input id="profile-temporary" data-profile type="checkbox"> Temporary</label></div></div>
+        <div id="profile-address" class="profile-address">
+          <div class="profile-row"><label for="profile-address-value">Địa chỉ đã đối chiếu</label><textarea id="profile-address-value" rows="2" readonly placeholder="Đọc QR và chọn kết quả đối chiếu địa chỉ"></textarea></div>
+          <div class="profile-row"><span></span><button type="button" id="profile-edit-address" class="profile-link">Đối chiếu / bổ sung địa chỉ →</button></div>
+        </div>
+      </details>
+      <details class="profile-section" open><summary>Personal Details</summary>
+        <div class="profile-row"><label for="profile-nationality">Nationality</label><select id="profile-nationality" data-profile><option value="">Chưa có thông tin</option><option>Việt Nam</option><option>Khác</option></select></div>
+        <div class="profile-row"><label for="profile-language">Primary Language</label><select id="profile-language" data-profile><option value="">Chưa có thông tin</option><option>Vietnamese</option><option>English</option><option>Khác</option></select></div>
+        <div class="profile-row"><label for="profile-ethnicity">Ethnicity</label><input id="profile-ethnicity" data-profile placeholder="Không rõ"></div>
+        <div class="profile-row"><label for="profile-occupation">Occupation</label><input id="profile-occupation" data-profile placeholder="Unknown"></div>
+      </details>
+      <details class="profile-section"><summary>Employment Details</summary><div class="profile-row"><label for="profile-employer">Employer</label><input id="profile-employer" data-profile placeholder="Đơn vị công tác"></div></details>
+    </div>
+    <div id="profile-care" role="tabpanel" aria-labelledby="tab-care" hidden><p class="profile-tab-empty">Chưa có dữ liệu người liên hệ/chăm sóc từ mã QR.</p></div>
+    <div id="profile-financial" role="tabpanel" aria-labelledby="tab-financial" hidden><p class="profile-tab-empty">Chưa có thông tin tài chính trong mã QR.</p></div>
+  </form>
+  <p class="profile-origin" id="profile-origin">Họ tên, ngày sinh và giới tính sẽ điền từ QR. Các trường khác cần người thao tác bổ sung.</p>
+</div>
+
+        <div id="empty" class="empty"><div class="empty-art">▤<span>✓</span></div><h3>Sẵn sàng tiếp nhận</h3><p>Quét mã QR CCCD hoặc chọn một mẫu bên trái.<br>Thông tin và địa chỉ mới sẽ xuất hiện tại đây.</p><div class="empty-flow"><span>QR căn cước</span> → <span>Đối chiếu NSO</span> → <span>Xác nhận</span></div></div>
+        <div id="result" hidden>
+          <div class="person-heading"><span class="avatar" id="initials">NB</span><div><h3 id="person-name"></h3><p id="person-label">Thông tin đọc từ mã QR</p></div></div>
+          <dl class="person-grid"><div><dt>SỐ CCCD</dt><dd id="person-id"></dd></div><div><dt>NGÀY SINH</dt><dd id="person-birth"></dd></div><div><dt>GIỚI TÍNH</dt><dd id="person-sex"></dd></div><div><dt>NGÀY CẤP</dt><dd id="person-issued"></dd></div><div><dt>CMND CŨ</dt><dd id="person-old-id"></dd></div></dl>
+          <div class="address-title"><h3>Địa chỉ theo chính quyền hai cấp</h3><span class="badge neutral">Mốc 01/07/2025</span></div>
+          <div class="address-card old"><span class="field-kicker">ĐỊA CHỈ TRONG QR CCCD</span><p id="old-address"></p></div>
+          <details class="address-edit"><summary>Bổ sung / sửa địa chỉ để tra cứu</summary><label for="address-input">Địa chỉ dùng để đối chiếu</label><textarea id="address-input" rows="3"></textarea><button id="remap" class="secondary">Đối chiếu lại</button><p class="helper">Giữ nguyên địa chỉ gốc từ QR; địa chỉ bổ sung được ghi riêng.</p></details>
+          <div id="mapping-status" class="mapping-status" role="status"></div>
+          <div id="mapping-evidence" class="helper"></div>
+          <div id="candidates"></div>
+          <div id="mapped-address" class="address-card new" hidden><span class="field-kicker">ĐỊA CHỈ HAI CẤP · XÃ/PHƯỜNG — TỈNH/THÀNH</span><p id="new-address"></p><span id="new-code" class="code"></span></div>
+          <div id="manual-review" hidden><label for="review-note">Căn cứ xác nhận địa bàn <span class="required">*</span></label><textarea id="review-note" rows="2" placeholder="Ví dụ: đã đối chiếu tên đường, tổ dân phố và xác nhận với người bệnh…"></textarea><p class="helper">Bảng chuyển đổi có phần địa giới; cần kiểm tra địa bàn thực tế trước khi chọn.</p></div>
+          <label class="confirm-check"><input id="verified" type="checkbox"><span>Tôi đã kiểm tra thông tin với người bệnh và xác nhận địa chỉ mới.</span></label>
+          <div class="result-actions"><button id="confirm" class="primary" disabled aria-describedby="confirm-help">Xác nhận thông tin →</button><button id="export" class="secondary" hidden>Tải phiếu JSON</button></div>
+          <p id="confirm-help" class="helper" role="status"></p>
+          <p id="confirmation" class="confirmation" role="status"></p>
+        </div>
+      </section>
+    </div>
+    <footer><div><strong>Nguồn đối chiếu: Cục Thống kê (NSO)</strong><p id="data-summary">Đang nạp bảng chuyển đổi…</p></div><a href="https://danhmuchanhchinh.nso.gov.vn/TAPTIN/BangChuyendoi%C4%90VHCmoi_cu_final.xlsx" target="_blank" rel="noopener noreferrer">Xem bảng nguồn ↗</a><p class="scope-note">Demo đối chiếu theo bảng chuyển đổi mốc 01/07/2025; không xác thực danh tính và chưa đồng bộ biến động phát sinh sau mốc này.</p></footer>
+  </main>
+</body>
+</html>
