@@ -1,0 +1,29 @@
+{
+  "samples": 20,
+  "milliseconds": [
+    142.5,
+    143.7,
+    170.4,
+    127.3,
+    148.6,
+    142.7,
+    141.5,
+    148.4,
+    156.4,
+    160.4,
+    169.5,
+    148.1,
+    140.0,
+    134.2,
+    142.9,
+    141.4,
+    152.8,
+    144.7,
+    142.0,
+    151.8
+  ],
+  "under_5000ms": 20,
+  "browser": "157.0.4341.60",
+  "mode": "headless Edge; local synthetic fixtures",
+  "excludes": "Human address confirmation and save time"
+}

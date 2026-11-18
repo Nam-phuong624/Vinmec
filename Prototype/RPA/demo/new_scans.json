@@ -1,0 +1,17 @@
+[
+  {
+    "pid": "",
+    "company": "Công ty Demo A",
+    "scan": "{\"format\": \"VINMEC-DEMO-1\", \"national_id\": \"000888000001\", \"name\": \"Nguyễn Minh Anh\", \"dob\": \"1990-05-12\", \"sex\": \"Nữ\", \"address\": \"1 Đường Mẫu, địa chỉ nguồn Excel\"}"
+  },
+  {
+    "pid": "",
+    "company": "Công ty Demo A",
+    "scan": "{\"format\": \"VINMEC-DEMO-1\", \"national_id\": \"000888000002\", \"name\": \"Trần Ngọc Mai\", \"dob\": \"1991-05-12\", \"sex\": \"Nữ\", \"address\": \"2 Đường Mẫu, địa chỉ nguồn Excel\"}"
+  },
+  {
+    "pid": "",
+    "company": "Công ty Demo A",
+    "scan": "{\"format\": \"VINMEC-DEMO-1\", \"national_id\": \"000888000003\", \"name\": \"Lê Hoàng Sơn\", \"dob\": \"1992-05-12\", \"sex\": \"Nam\", \"address\": \"3 Đường Mẫu, địa chỉ nguồn Excel\"}"
+  }
+]

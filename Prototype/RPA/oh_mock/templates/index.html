@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OH Demo · Tiếp đón</title><link rel="stylesheet" href="/static/oh.css"></head>
+<body>
+<aside class="rail"><div class="brand">V<span>+</span></div><span>OH</span><div class="rail-mark">▣</div></aside>
+<div class="workspace">
+  <header><div><strong>OH <span class="muted">/ Khám sức khỏe theo đoàn</span></strong><p>Tiếp đón · Patient Administration</p></div><span class="badge">MÔ PHỎNG · DỮ LIỆU GIẢ</span></header>
+  <main>
+    <div class="title-row"><div><p class="eyebrow">TIẾP NHẬN NGƯỜI KHÁM</p><h1>Patient Profile</h1></div><span class="muted">Quầy tiếp đón / Demo</span></div>
+    <form id="lookup" class="lookup"><label for="pid-input">Quét / nhập PID</label><div><input id="pid-input" placeholder="Ví dụ: DEMO0001" autocomplete="off" autofocus><button id="open-record">Mở hồ sơ <span>↗</span></button></div><small>Enter để mở · Có thể dùng PID từ thẻ demo</small></form>
+    <div id="message" role="status" aria-live="polite">Sẵn sàng tiếp nhận. Nhập PID để bắt đầu.</div>
+    <section id="empty" class="empty"><span class="empty-icon">＋</span><h2>Chưa mở hồ sơ</h2><p>Quét PID trên hồ sơ giấy để xem thông tin người khám.</p><span class="sample">Dữ liệu mẫu: DEMO0001 – DEMO0020</span></section>
+    <section id="profile" hidden>
+      <div class="patient-strip"><div class="avatar" aria-hidden="true">NB</div><div><h2 id="summary-name"></h2><p id="summary-company"></p></div><div class="pid-tag"><small>HOSPITAL NUMBER / PID</small><strong id="pid"></strong></div></div>
+      <nav class="tabs" aria-label="Patient profile"><button type="button" class="active" aria-current="page">Demographics</button><span>Circle of Care</span><span>Financial</span></nav>
+      <div class="section-heading"><h2>Identification Details</h2><span class="section-number">01</span></div>
+      <div class="fields">
+        <label>Họ và tên / Name (Local)<input id="name" readonly></label>
+        <label>Giới tính / Sex<input id="sex" readonly></label>
+        <label>Ngày sinh / Date of Birth<input id="dob" readonly></label>
+        <label>Số CCCD / Official Document<input id="national-id" placeholder="Chưa có CCCD" maxlength="12" inputmode="numeric" data-edit></label>
+      </div>
+      <div class="section-heading"><h2>Contact Details</h2><span class="section-number">02</span></div>
+      <div class="address-row"><div><label>Địa chỉ / Addresses</label><p id="address-summary"></p></div><button type="button" id="edit-address" class="secondary">Sửa địa chỉ</button></div>
+      <div class="section-heading"><h2>Personal & Employment Details</h2><span class="section-number">03</span></div>
+      <div class="fields"><label>Quốc tịch<input value="Việt Nam" readonly></label><label>Ngôn ngữ<input value="Vietnamese" readonly></label><label>Công ty<input id="company" readonly></label><label>Đợt khám<input id="batch" readonly></label></div>
+      <footer><span id="save-state">Chưa có thay đổi</span><div><button type="button" id="lock-record" class="secondary">Khóa hồ sơ để điền</button><button type="button" id="cancel" class="secondary">Hủy thay đổi</button><button type="button" id="save">Lưu hồ sơ</button></div></footer>
+    </section>
+    <p class="footnote">OH mô phỏng phục vụ trình diễn · Không kết nối hệ thống phòng khám</p>
+  </main>
+</div>
+<dialog id="address-dialog" aria-labelledby="address-title"><form id="address-form"><p class="eyebrow">CONTACT DETAILS</p><h2 id="address-title">Cập nhật địa chỉ</h2><p class="muted">Nhập địa chỉ hiện tại đã xác nhận với người khám.</p><label>Tỉnh / Thành phố<input id="province" required maxlength="250"></label><label>Phường / Xã<input id="ward" required maxlength="250"></label><label>Số nhà / Đường / Thôn<input id="street" required maxlength="250"></label><p id="address-preview"></p><div class="dialog-actions"><button type="button" class="secondary" id="close-address">Hủy</button><button id="apply-address">Áp dụng địa chỉ</button></div></form></dialog>
+<script src="/static/oh.js"></script>
+</body></html>

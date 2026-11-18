@@ -1,0 +1,10 @@
+{
+  "pid": "Patient ID",
+  "given": "Patient Given Name",
+  "middle": "Patient Middle Name",
+  "last": "Patient Last Name",
+  "dob": "Date Of Birth",
+  "sex": "Sex",
+  "address": "Patient Address",
+  "national_id": "National ID"
+}

@@ -1,0 +1,28 @@
+{
+  "samples": 20,
+  "milliseconds": [
+    265.7,
+    257.0,
+    264.8,
+    254.4,
+    269.0,
+    257.9,
+    266.3,
+    257.4,
+    267.6,
+    255.4,
+    274.1,
+    257.1,
+    266.0,
+    264.8,
+    267.9,
+    255.2,
+    268.5,
+    254.1,
+    265.7,
+    259.2
+  ],
+  "under_5000ms": 20,
+  "mode": "Native WinForms + pywinauto Windows UI Automation; visible desktop",
+  "excludes": "Human address confirmation and save time"
+}

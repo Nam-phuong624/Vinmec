@@ -1,0 +1,20 @@
+{
+  "contract": "docs/design-contract.md: Patient Profile theo ảnh OH; PID rõ ràng, địa chỉ xác nhận, dữ liệu giả, bàn phím và co giãn.",
+  "targetViewports": ["1440x1000", "820x1000", "390x844"],
+  "accessibility": {"status": "pass", "evidence": "Nhãn liên kết input, focus outline, Enter mở PID/modal, Tab nằm trong dialog, Escape đóng dialog. Status dùng aria-live. Đây là kiểm tra cơ bản, không phải chứng nhận WCAG đầy đủ."},
+  "responsive": {"status": "pass", "evidence": "Đã kiểm tra ảnh 1440, 820, 390 px và scrollWidth <= innerWidth. Tkinter có thanh cuộn; ảnh đầu/cuối cửa sổ xác nhận nút điền truy cập được."},
+  "contentStates": {
+    "loading": {"status": "pass", "evidence": "Giữ response mở PID để chụp trạng thái Đang mở hồ sơ, nút mở bị khóa trong lúc tải."},
+    "empty": {"status": "pass", "evidence": "Trang chưa có PID hiển thị hướng dẫn và hồ sơ trống."},
+    "error": {"status": "pass", "evidence": "PID không tồn tại có thông báo lỗi và ẩn hồ sơ; lỗi lưu được kiểm thử bằng response 503."},
+    "partial": {"status": "pass", "evidence": "Sau RPA điền và trước lưu, draft khác saved, công cụ chưa xác nhận hoàn tất."},
+    "success": {"status": "pass", "evidence": "Thông báo lưu thành công và kiểm tra lại hồ sơ sau reload; có ảnh state-success."},
+    "permission": {"status": "not-applicable", "reason": "Prototype cục bộ không có luồng cấp quyền trong sản phẩm; quyền chạy trình duyệt/cài phụ thuộc do môi trường máy quản lý."}
+  },
+  "renderedEvidence": [
+    {"viewport": "1440x1000", "artifact": "evidence/oh-1440x1000.png", "observation": "OH desktop: PID và nhóm trường theo thứ tự, lưu ở cuối hồ sơ."},
+    {"viewport": "820x1000", "artifact": "evidence/oh-820x1000.png", "observation": "OH cửa sổ cạnh RPA: hai cột không đè nhau, tên/PID đọc rõ."},
+    {"viewport": "390x844", "artifact": "evidence/oh-390x844.png", "observation": "OH hẹp chuyển một cột, nút xuống dòng, không tràn ngang."},
+    {"viewport": "600px desktop window", "artifact": "evidence/rpa-bottom.png", "observation": "Tkinter cuộn xuống vùng xác nhận địa chỉ và nút điền/dừng/lượt mới."}
+  ]
+}
