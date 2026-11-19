@@ -19,6 +19,7 @@ from pywinauto.uia_element_info import UIAElementInfo
 from shared.excel import ohdemo_record
 from shared.identity import ReviewRequired
 from rpa_tool.contracts import audit
+from rpa_tool.audit_trail import fields as record_fields, expected as record_expected
 
 WINDOW_TITLE = 'OH · Patient Profile — DEMO'
 PLACEHOLDER_ADDR = 'Add one or more addresses.'
@@ -58,6 +59,7 @@ class OhDemoRPA:
         self.iuia = IUIA().iuia
         self.root = self.w.element_info.element
         self.index = None
+        self.last_change = None   # vết 'trước/sau' của dòng vừa xử lý xong (runner ghi ra nhật ký thay đổi)
 
     # ---- chỉ mục control của trang hiện tại -----------------------------------------------------
     def refresh(self):
@@ -77,6 +79,58 @@ class OhDemoRPA:
     def invalidate(self):
         self.index = None
 
+    def diagnose(self) -> str:
+        """Mô tả ngắn tình trạng OH lúc lỗi: trang đang mở, dòng trạng thái, hộp thoại, cửa sổ ẩn/thu nhỏ/khóa."""
+        try:
+            h = self.handle
+            parts = []
+            if not win32gui.IsWindow(h):
+                return ' [cửa sổ OH đã đóng]'
+            if win32gui.IsIconic(h):
+                parts.append('cửa sổ OH đang THU NHỎ (RPA không điều khiển được cửa sổ thu nhỏ)')
+            if not win32gui.IsWindowEnabled(h):
+                parts.append('cửa sổ OH đang bị khóa bởi một hộp thoại')
+            boxes = self.box_texts()
+            if boxes:
+                parts.append('OH đang hiện hộp thoại: ' + ' | '.join(boxes))
+            try:
+                parts.append('trang đang mở: ' + self.state())
+                if self.index and 'status' in self.index:      # đọc trực tiếp, không chờ (tránh gọi đệ quy khi lỗi)
+                    parts.append('dòng trạng thái OH: "' + UIAWrapper(UIAElementInfo(self.index['status'])).window_text()[:80] + '"')
+            except Exception:
+                pass
+            return ' [' + '; '.join(parts) + ']' if parts else ''
+        except Exception:
+            return ''
+
+    def message_boxes(self):
+        found = []
+
+        def visit(w, _):
+            if (win32gui.IsWindowVisible(w) and win32gui.GetClassName(w) == '#32770'
+                    and win32process.GetWindowThreadProcessId(w)[1] == self.pid):
+                found.append(w)
+        win32gui.EnumWindows(visit, None)
+        return found
+
+    def box_texts(self):
+        out = []
+        for w in self.message_boxes():
+            texts = []
+            win32gui.EnumChildWindows(w, lambda c, _: texts.append(win32gui.GetWindowText(c)) or True, None)
+            out.append(' '.join(x for x in texts if x and x not in ('&Yes', '&No', 'OK')))
+        return out
+
+    def clear_boxes(self):
+        """Đóng mọi hộp thoại xác nhận còn kẹt trong OH: "Bỏ các thay đổi chưa lưu?" → Yes; "Vẫn tạo mới?" (nghi trùng) → No."""
+        cleared = []
+        for w, text in zip(self.message_boxes(), self.box_texts()):
+            win32gui.PostMessage(w, win32con.WM_COMMAND, 7 if 'Vẫn tạo mới' in text else 6, 0)   # IDNO / IDYES
+            cleared.append(text)
+        if cleared:
+            time.sleep(0.3)
+        return cleared
+
     def has(self, aid, fresh=False):
         if fresh or self.index is None:
             self.refresh()
@@ -89,7 +143,7 @@ class OhDemoRPA:
             if condition():
                 return
             if time.time() > end:
-                raise ReviewRequired('Hết thời gian chờ: ' + what)
+                raise ReviewRequired('Hết thời gian chờ: ' + what + self.diagnose())
             time.sleep(0.08)
 
     def get(self, aid, dialog=None):
@@ -216,22 +270,15 @@ class OhDemoRPA:
             addresses=[] if info == PLACEHOLDER_ADDR else [a.strip() for a in info.split(';') if a.strip()])
 
     def add_address(self, parts):
+        """Bấm "+" ở Addresses: các ô địa chỉ mở rộng ngay bên dưới trong cùng trang; điền rồi bấm Add."""
         province, ward, street = parts
         self.click('edit-add-address')
-        found = []
-
-        def visit(h, _):
-            if (win32gui.IsWindowVisible(h) and win32gui.GetWindowText(h).startswith('Add Address')
-                    and win32process.GetWindowThreadProcessId(h)[1] == self.pid):
-                found.append(h)
-        wait_until(self.timeout, .1, lambda: (found.clear(), win32gui.EnumWindows(visit, None), bool(found))[2])
-        dialog = self.app.window(handle=found[0])
-        self.set_text('address-province', province, dialog)
-        self.set_text('address-ward', ward, dialog)
-        self.set_text('address-street', street, dialog)
-        self.click('apply-address', dialog)
-        wait_until(self.timeout, .1, lambda: not win32gui.IsWindow(found[0]))
-        self.invalidate()
+        self.wait_for(lambda: 'edit-address-province' in self.index, 'mở các ô địa chỉ')
+        self.set_text('edit-address-province', province)
+        self.set_text('edit-address-ward', ward)
+        self.set_text('edit-address-street', street)
+        self.click('edit-address-add')
+        self.wait_for(lambda: 'edit-address-province' not in self.index, 'thêm địa chỉ (khung địa chỉ phải thu lại)')
 
     def apply(self, rec, cur):
         """Chỉ ghi các trường khác Excel; trả (các trường đã đổi, các việc phải điền tay)."""
@@ -266,17 +313,77 @@ class OhDemoRPA:
                     self.add_address(rec['address_parts']); changed.append('Địa chỉ')
         return changed, manual
 
-    def save_edit(self):
+    def save_edit(self, pid):
+        """Bấm Lưu và chờ OH báo ĐÚNG hồ sơ này đã lưu (không nhận nhầm dòng trạng thái của lần lưu trước)."""
         self.click('edit-save')
+        wanted = 'Đã lưu hồ sơ ' + pid
         end = time.time() + self.timeout
         while time.time() < end:
             text = self.status()
-            if text.startswith('Đã lưu hồ sơ'):
+            if text.startswith(wanted):
                 return
             if text.startswith('Chưa lưu'):
                 raise ReviewRequired(text)
             time.sleep(0.1)
-        raise ReviewRequired('OH không báo lưu thành công trong ' + str(self.timeout) + ' giây.')
+        raise ReviewRequired('OH không báo đã lưu hồ sơ ' + pid + ' trong ' + str(self.timeout) + ' giây.' + self.diagnose())
+
+    # ---- đối chiếu dữ liệu đã nhập ---------------------------------------------------------------------
+    @staticmethod
+    def mismatch(cur, rec, manual=()):
+        """So nội dung form/hồ sơ với dữ liệu Excel; trả danh sách chỗ lệch (rỗng = khớp). Trường đã báo "cần điền tay" thì bỏ qua."""
+        skip = ' '.join(manual)
+        bad = []
+        for key, label in (('first', 'Họ'), ('middle', 'Đệm'), ('last', 'Tên'), ('sex', 'Giới tính'), ('dob', 'Ngày sinh'), ('phone', 'SĐT')):
+            if cur[key] != rec[key] and (rec[key] or key == 'middle'):
+                bad.append(f'{label}: OH="{cur[key]}" ≠ Excel="{rec[key]}"')
+        if rec['title'] and cur['title'] != rec['title'] and 'Title' not in skip:
+            bad.append(f'Title: OH="{cur["title"]}" ≠ Excel="{rec["title"]}"')
+        if rec['nationality'] and cur['nationality'] != rec['nationality'] and 'Nationality' not in skip:
+            bad.append(f'Quốc tịch: OH="{cur["nationality"]}" ≠ Excel="{rec["nationality"]}"')
+        if rec['address'] and rec['address_parts'] is not None:
+            province, ward, street = rec['address_parts']
+            if ', '.join(x for x in (street, ward, province) if x) not in cur['addresses']:
+                bad.append('Địa chỉ chưa có trong hồ sơ')
+        return bad
+
+    def read_back(self, pid):
+        """Đọc lại hồ sơ đã lưu từ OH (mở hồ sơ → Edit → đọc → thoát Edit)."""
+        self.leave_edit()
+        if self.search(pid) != 'view' or self.label('view-pid') != pid:
+            raise ReviewRequired('Không mở lại được hồ sơ ' + pid + ' để đối chiếu sau khi lưu.')
+        self.click('edit-toggle')
+        self.wait_for(lambda: 'edit-pid' in self.index, 'mở Edit để đối chiếu')
+        cur = self.read_edit()
+        self.leave_edit()
+        return cur
+
+    # ---- khôi phục hồ sơ cũ về giá trị trước ---------------------------------------------------------
+    def restore_fields(self, pid, before):
+        """Điền lại giá trị cũ vào hồ sơ đang ở trang Edit rồi Lưu. Trả danh sách việc phải làm tay (ví dụ xóa địa chỉ đã thêm)."""
+        manual = []
+        cur = self.read_edit()
+        if cur['pid'] != pid:
+            raise ReviewRequired(f'Trang Edit đang mở là {cur["pid"]}, không phải {pid}; dừng, không khôi phục.')
+        for key, aid in (('title', 'edit-local-title'), ('sex', 'edit-sex'), ('nationality', 'edit-nationality')):
+            if cur[key] != before[key]:
+                if before[key] in self.combo_items(aid):
+                    self.select(aid, before[key])
+                else:
+                    manual.append(f'{key}: không chọn lại được giá trị cũ "{before[key]}"')
+        for key, aid in (('first', 'edit-local-first'), ('middle', 'edit-local-middle'), ('last', 'edit-local-last'), ('phone', 'edit-phone')):
+            if cur[key] != before[key]:
+                self.set_text(aid, before[key])
+        if cur['dob'] != before['dob']:
+            self.select('edit-dob-precision', 'Year, Month and Day')
+            self.set_text('edit-dob', before['dob'])
+        extra = [a for a in cur['addresses'] if a not in before['addresses']]
+        if extra:
+            manual.append('Địa chỉ RPA đã thêm, cần xóa tay trong OH: ' + ' | '.join(extra))
+        check = self.read_edit()
+        if check['pid'] != pid:
+            raise ReviewRequired('Trang Edit đổi sang hồ sơ khác khi khôi phục; không lưu.')
+        self.save_edit(pid)
+        return manual
 
     # ---- một dòng Excel ------------------------------------------------------------------------------
     def process(self, row, stop=None) -> str:
@@ -286,10 +393,18 @@ class OhDemoRPA:
                 raise ReviewRequired('Đã dừng; dòng này chưa xử lý xong.')
         rec = ohdemo_record(row)
         started = time.time()
+        self.last_change = None
+        before_fields = None
+        created = None            # PID hồ sơ mới đã tạo trong dòng này
+        creating = False          # đã (hoặc sắp) bấm Save ở khung New Patient: có thể đã có hồ sơ mới dù chưa đọc được PID
+        finished = False
         try:
             check()
+            self.clear_boxes()
             self.leave_edit()
             state = self.search(rec['full_name'])
+            if state not in ('list', 'blank') or self.read_text('pid-search').strip() != rec['full_name']:
+                raise ReviewRequired('Kết quả tìm kiếm không phải của dòng này (trang đang mở: ' + state + '; có thao tác khác trên OH trong lúc RPA chạy?); dừng để không tạo trùng hoặc ghi nhầm.')
             matches = [r for r in (self.result_rows() if state == 'list' else [])
                        if fold(r['name']) == fold(rec['full_name'])]
             same_year = [r for r in matches if r['dob'][-4:] == rec['year']]
@@ -306,32 +421,73 @@ class OhDemoRPA:
                 verb = 'cập nhật'
             else:
                 self.click('new-patient')
-                self.wait_for(lambda: 'new-first' in self.index, 'mở khung New Patient')
+                try:
+                    self.wait_for(lambda: 'new-first' in self.index, 'mở khung New Patient', wait=2.5)
+                except ReviewRequired:
+                    self.clear_boxes()
+                    self.leave_edit()
+                    self.click('new-patient')
+                    self.wait_for(lambda: 'new-first' in self.index, 'mở khung New Patient')
                 for aid, value in (('new-first', rec['first']), ('new-middle', rec['middle']), ('new-last', rec['last']),
                                    ('new-year', rec['year']), ('new-phone', rec['phone'])):
                     self.set_text(aid, value)
                 check()
+                creating = True
                 self.click('new-save')
                 self.wait_for(lambda: 'edit-pid' in self.index, 'cấp PID mới')
-                pid = self.label('edit-pid')
+                pid = created = self.label('edit-pid')
                 verb = 'tạo'
             check()
             current = self.read_edit()
+            if current['pid'] != pid:
+                raise ReviewRequired(f'Trang Edit đang mở là hồ sơ {current["pid"]}, không phải {pid} (có thao tác khác trên OH?); dừng để không ghi nhầm người.')
+            if verb == 'cập nhật' and (fold(' '.join(x for x in (current['first'], current['middle'], current['last']) if x)) != fold(rec['full_name'])
+                                       or current['dob'][-4:] != rec['year']):
+                raise ReviewRequired(f'Hồ sơ {pid} đang mở không đúng tên/năm sinh dự định (có thao tác khác trên OH?); dừng để không ghi nhầm người.')
+            before_fields = record_fields(current)
             changed, manual = self.apply(rec, current)
             check()
             if changed or verb == 'tạo':
-                self.save_edit()
+                before_save = self.read_edit()         # form phải đúng là hồ sơ này và đúng dữ liệu Excel trước khi lưu
+                gap = self.mismatch(before_save, rec, manual)
+                if before_save['pid'] != pid or gap:
+                    raise ReviewRequired(f'Form hồ sơ {before_save["pid"]} không khớp dữ liệu Excel trước khi lưu ({"; ".join(gap) or "sai hồ sơ"}); không lưu để tránh ghi sai.')
+                self.save_edit(pid)
+                saved = self.read_back(pid)             # đọc lại hồ sơ đã lưu để chắc chắn đúng
+                gap = self.mismatch(saved, rec, manual)
+                if gap:
+                    raise ReviewRequired(f'Sau khi lưu, hồ sơ {pid} không khớp dữ liệu Excel ({"; ".join(gap)}); cần kiểm tra tay.')
+                after_fields = record_fields(saved)
                 result = f'Đã {verb} · PID {pid}' + (' · ' + ', '.join(changed) if changed else '')
             else:
                 self.leave_edit()
+                after_fields = before_fields
                 result = f'Không đổi · PID {pid}'
+            finished = True
+            self.last_change = dict(pid=pid, action=verb if changed or verb == 'tạo' else 'giữ', changed=changed, manual=manual,
+                                    before=None if verb == 'tạo' else before_fields, after=after_fields, expected=record_expected(rec))
             audit('row_done', pid=pid, action=verb if changed or verb == 'tạo' else 'giữ', elapsed_ms=round((time.time() - started) * 1000))
             if manual:
                 raise NeedManual(f'PID {pid} · cần điền tay: ' + '; '.join(manual))
             return result
-        except Exception:
-            try:
-                self.leave_edit()
-            except Exception:
-                pass
-            raise
+        except Exception as exc:
+            gone = not win32gui.IsWindow(self.handle)
+            if not gone:
+                try:
+                    self.clear_boxes()
+                    self.leave_edit()
+                except Exception:
+                    pass
+            if finished or isinstance(exc, NeedManual):
+                raise
+            if gone:
+                message = 'Mất kết nối: cửa sổ OH đã bị đóng. Mở lại OHDemo.exe rồi chạy lại; dòng này chưa xử lý xong.'
+            elif isinstance(exc, ReviewRequired):
+                message = str(exc)
+            else:
+                message = f'Lỗi khi điều khiển OH ({type(exc).__name__}: {str(exc)[:120]}).' + self.diagnose()
+            if created:
+                message += f' · LƯU Ý: hồ sơ {created} đã được tạo nhưng chưa bổ sung đủ thông tin; chạy lại RPA để hoàn tất hoặc kiểm tra tay.'
+            elif creating:
+                message += ' · LƯU Ý: có thể đã tạo hồ sơ mới cho dòng này (chưa rõ PID); tìm theo họ tên trên OH để kiểm tra, chạy lại RPA sẽ tự hoàn tất.'
+            raise ReviewRequired(message) from exc

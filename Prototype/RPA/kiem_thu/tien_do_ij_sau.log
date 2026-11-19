@@ -1,0 +1,50 @@
+18:37:30 Bắt đầu nhóm I+J, chế độ sau, 47 ca
+18:37:46 Trạng thái gốc: DEMO0001=0900000001, DEMO0002=0900000002, DEMO0003=0900000003, DEMO0004=0900000004, DEMO0005=0900000005
+18:38:14 I01 ĐẠT | RPA báo ERROR: ReviewRequired: Kết quả tìm kiếm không phải của dòng này (trang đang mở: list; có thao tác khác | 
+18:38:45 I02 ĐẠT | RPA báo ERROR: ReviewRequired: Trang Edit đang mở là hồ sơ DEMO0002, không phải DEMO0001 (có thao tác khác trê | 
+18:39:23 I03 ĐẠT | RPA báo ERROR: ReviewRequired: Hết thời gian chờ: mở trang Edit [trang đang mở: view; dòng trạng thái OH: "Đã  | 
+18:39:56 I04 ĐẠT | RPA báo ERROR: ReviewRequired: Lỗi khi điều khiển OH (ElementNotVisible: ). [trang đang mở: view; dòng trạng t | 
+18:40:30 I05 ĐẠT | RPA báo ERROR: ReviewRequired: Sau khi lưu, hồ sơ DEMO0001 không khớp dữ liệu Excel (SĐT: OH="0111111111" ≠ Ex | 
+18:40:50 I06 ĐẠT | RPA báo ERROR: ReviewRequired: Sau khi lưu, hồ sơ DEMO0001 không khớp dữ liệu Excel (Họ: OH="Sai" ≠ Excel="Ngu | 
+18:41:23 I07 ĐẠT | RPA báo ERROR: ReviewRequired: Lỗi khi điều khiển OH (COMError: (-2147220992, None, (None, None, None, 0, None | 
+18:41:53 I08 ĐẠT | RPA báo ERROR: ReviewRequired: Lỗi khi điều khiển OH (error: (1400, 'PostMessage', 'Invalid window handle.')). | 
+18:42:23 I09 ĐẠT | RPA báo ERROR: ReviewRequired: Kết quả tìm kiếm không phải của dòng này (trang đang mở: view; có thao tác khác | 
+18:42:58 I10 ĐẠT | RPA báo ERROR: ReviewRequired: OH không báo đã lưu hồ sơ DEMO0001 trong 5 giây. [trang đang mở: view; dòng trạ | 
+18:43:35 I11 ĐẠT | RPA báo ERROR: ReviewRequired: Hết thời gian chờ: mở các ô địa chỉ [trang đang mở: edit; dòng trạng thái OH: " | 
+18:44:13 I12 ĐẠT | RPA báo ERROR: ReviewRequired: Hết thời gian chờ: mở trang Edit [cửa sổ OH đang THU NHỎ (RPA không điều khiển  | 
+18:44:44 I13 ĐẠT | RPA báo UPDATE: Đã cập nhật · PID DEMO0001 · Điện thoại, Địa chỉ | chạy lại: SAME Không đổi · PID DEMO0001 | 
+18:45:15 I14 ĐẠT | RPA báo ERROR: ReviewRequired: Lỗi khi điều khiển OH (ElementNotVisible: ). [trang đang mở: new; dòng trạng th | 
+18:45:54 I21 ĐẠT | RPA báo CREATE: Đã tạo · PID NEW000001 · Title, Sex, Ngày sinh, Nationality, Địa chỉ | chạy lại: SAME Không đổ | 
+18:46:30 I22 ĐẠT | RPA báo CREATE: Đã tạo · PID NEW000001 · Title, Tên, Sex, Ngày sinh, Nationality, Địa chỉ | chạy lại: SAME Khô | 
+18:47:06 I23 ĐẠT | RPA báo CREATE: Đã tạo · PID NEW000001 · Title, Sex, Ngày sinh, Nationality, Địa chỉ | chạy lại: SAME Không đổ | 
+18:47:46 I24 ĐẠT | RPA báo ERROR: ReviewRequired: Hết thời gian chờ: cấp PID mới [trang đang mở: view; dòng trạng thái OH: "Đã mở | 
+18:48:21 I25 ĐẠT | RPA báo ERROR: ReviewRequired: Lỗi khi điều khiển OH (COMError: (-2147220992, None, (None, None, None, 0, None | 
+18:49:01 I26 ĐẠT | RPA báo ERROR: ReviewRequired: Hết thời gian chờ: cấp PID mới [trang đang mở: new; dòng trạng thái OH: "Nhập t | 
+18:49:37 I27 ĐẠT | RPA báo ERROR: ReviewRequired: Lỗi khi điều khiển OH (error: (1400, 'PostMessage', 'Invalid window handle.')). | 
+18:50:19 I28 ĐẠT | RPA báo ERROR: ReviewRequired: Hết thời gian chờ: cấp PID mới [cửa sổ OH đang THU NHỎ (RPA không điều khiển đư | 
+18:50:43 J01 ĐẠT | RPA báo ERROR: ReviewRequired: Mất kết nối: cửa sổ OH đã bị đóng. Mở lại OHDemo.exe rồi chạy lại; dòng này chư | 
+18:51:07 J02 ĐẠT | RPA báo ERROR: ReviewRequired: Mất kết nối: cửa sổ OH đã bị đóng. Mở lại OHDemo.exe rồi chạy lại; dòng này chư | 
+18:51:33 J03 ĐẠT | RPA báo ERROR: ReviewRequired: Mất kết nối: cửa sổ OH đã bị đóng. Mở lại OHDemo.exe rồi chạy lại; dòng này chư | 
+18:51:58 J04 ĐẠT | RPA báo ERROR: ReviewRequired: Mất kết nối: cửa sổ OH đã bị đóng. Mở lại OHDemo.exe rồi chạy lại; dòng này chư | 
+18:52:24 J05 ĐẠT | RPA báo ERROR: ReviewRequired: Mất kết nối: cửa sổ OH đã bị đóng. Mở lại OHDemo.exe rồi chạy lại; dòng này chư | 
+18:52:52 J06 ĐẠT | RPA báo ERROR: ReviewRequired: Mất kết nối: cửa sổ OH đã bị đóng. Mở lại OHDemo.exe rồi chạy lại; dòng này chư | 
+18:53:20 J07 ĐẠT | RPA báo ERROR: ReviewRequired: Mất kết nối: cửa sổ OH đã bị đóng. Mở lại OHDemo.exe rồi chạy lại; dòng này chư | 
+18:53:48 J08 ĐẠT | RPA báo ERROR: ReviewRequired: Mất kết nối: cửa sổ OH đã bị đóng. Mở lại OHDemo.exe rồi chạy lại; dòng này chư | 
+18:54:35 J11 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+18:55:24 J12 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+18:56:14 J13 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+18:57:03 J14 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+18:57:53 J15 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+18:58:41 J16 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+18:59:30 J17 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+19:00:19 J18 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+19:01:12 J19 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+19:02:06 J20 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+19:03:00 J21 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+19:03:53 J22 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+19:04:44 J23 ĐẠT | Tiến trình RPA kết thúc (mã 137); báo cáo trước khi bị tắt: dòng 3: Lỗi · Số điện thoại thiếu số 0 đầu (có thể | 
+19:05:19 J24 ĐẠT | RPA báo ERROR: ReviewRequired: Đã dừng; dòng này chưa xử lý xong. · LƯU Ý: hồ sơ NEW000001 đã được tạo nhưng c | 
+19:05:56 J25 ĐẠT | RPA báo ERROR: ReviewRequired: Đã dừng; dòng này chưa xử lý xong. · LƯU Ý: hồ sơ NEW000001 đã được tạo nhưng c | 
+19:06:28 J26 ĐẠT | RPA báo ERROR: ReviewRequired: Đã dừng; dòng này chưa xử lý xong. | chạy lại: UPDATE Đã cập nhật · PID DEMO000 | 
+19:06:59 J27 ĐẠT | RPA báo UPDATE: Đã cập nhật · PID DEMO0001 · Điện thoại, Địa chỉ | chạy lại: SAME Không đổi · PID DEMO0001 | 
+19:06:59 Xong: 47 ca, ĐẠT 47, KHÔNG ĐẠT 0

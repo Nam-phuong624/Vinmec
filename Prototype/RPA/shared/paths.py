@@ -6,7 +6,7 @@ from pathlib import Path
 FROZEN = getattr(sys, 'frozen', False)
 ROOT = Path(sys.executable).resolve().parent if FROZEN else Path(__file__).resolve().parents[1]
 DEMO = ROOT / 'demo'
-RUNTIME = ROOT / 'runtime'
+RUNTIME = Path(os.environ.get('RPA_RUNTIME') or ROOT / 'runtime')
 
 
 def _find_ds_bung() -> Path:

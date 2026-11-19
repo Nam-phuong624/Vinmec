@@ -1,0 +1,8 @@
+18:32:23 K01 ĐẠT | 3 mục nhật ký, 20 dòng báo cáo | 
+18:33:13 K02 ĐẠT | đã khôi phục 1 hồ sơ; kết quả: DEMO0001: Đã khôi phục | NEW000001: CẦN NGƯỜI CÓ QUYỀN XỬ LÝ | NEW000002: CẦN NGƯỜI CÓ QUYỀN XỬ LÝ | 
+18:33:42 K03 ĐẠT | DEMO0001: BỎ QUA | NEW000001: CẦN NGƯỜI CÓ QUYỀN XỬ LÝ | 
+18:34:34 K04 ĐẠT | kết quả đối soát: ['Khớp', 'Khớp', 'Khớp'] | 
+18:35:03 K05 ĐẠT | kết quả: ['Khớp', 'LỆCH', 'TRÙNG']; chi tiết:  | SĐT: OH="0977000555" ≠ Excel="0933737935" | Có 2 hồ sơ cùng tên và năm sinh: NEW000002, NEW000003 | 
+18:35:28 K06 ĐẠT | kết quả: ['LỆCH', 'KHÔNG TÌM THẤY', 'KHÔNG TÌM THẤY'] | 
+18:36:04 K07 ĐẠT | RPA bị tắt ở dòng 3; nhật ký [3, 4]; khôi phục: DEMO0001: Đã khôi phục | NEW000001: CẦN NGƯỜI CÓ QUYỀN XỬ LÝ | 
+18:36:04 Xong: 7 ca, ĐẠT 7, KHÔNG ĐẠT 0

@@ -1,4 +1,5 @@
 """Đọc danh sách bung gói của ngày hiện tại từ ds bung/DD-MM-YYYY/. Không ghi vào file nguồn."""
+import unicodedata
 from datetime import date, datetime
 from pathlib import Path
 from openpyxl import load_workbook
@@ -56,7 +57,12 @@ def find_daily_file(day: date | None = None, base: Path = DS_BUNG) -> Path:
 
 def read_daily(path: str | Path) -> tuple[list[str], list[dict]]:
     """Trả về (tiêu đề, các dòng). Mỗi dòng: line, cells (đủ mọi cột, dạng chuỗi), values (gốc)."""
-    book = load_workbook(path, read_only=True, data_only=True)
+    try:
+        book = load_workbook(path, read_only=True, data_only=True)
+    except PermissionError:
+        raise
+    except Exception as exc:                                       # BadZipFile, InvalidFileException, ...
+        raise ReviewRequired(f'Không đọc được file Excel {Path(path).name}: file hỏng hoặc không phải .xlsx ({type(exc).__name__}).') from exc
     try:
         ws = book[book.sheetnames[0]]
         header, header_line, lines = None, 0, []
@@ -101,6 +107,60 @@ def parse_address(text: str):
     return None
 
 
+def _clean(text: str) -> str:
+    return unicodedata.normalize('NFC', str(text or '')).strip()
+
+
+def _check_name(label: str, text: str) -> str:
+    """Tên chỉ gồm chữ cái, khoảng trắng, dấu nháy, gạch nối, dấu chấm."""
+    text = ' '.join(_clean(text).split())
+    for ch in text:
+        if not (ch.isalpha() or ch in " '’-." or unicodedata.category(ch).startswith('M')):
+            raise ReviewRequired(f'{label} có ký tự không hợp lệ ({ch!r}); kiểm tra lại tên trong Excel.')
+    return text
+
+
+def _sex(text: str) -> str:
+    key = unicodedata.normalize('NFC', str(text or '')).strip().casefold()
+    for value in ('Nam', 'Nữ', 'Khác'):
+        if key == value.casefold():
+            return value
+    raise ReviewRequired('Giới tính phải là Nam / Nữ / Khác.')
+
+
+def _birth(value) -> str:
+    try:
+        text = dob(value)
+    except ReviewRequired:
+        try:                                                       # dd-mm-yyyy, dd.mm.yyyy
+            text = dob(str(value).strip().replace('-', '/').replace('.', '/'))
+        except ReviewRequired:
+            raise ReviewRequired('Ngày sinh không hợp lệ (cần dd/mm/yyyy).') from None
+    born = datetime.strptime(text, '%Y-%m-%d').date()
+    today = date.today()
+    if born > today:
+        raise ReviewRequired(f'Ngày sinh {born:%d/%m/%Y} ở tương lai.')
+    if today.year - born.year > 120:
+        raise ReviewRequired(f'Ngày sinh {born:%d/%m/%Y} quá xa (trên 120 tuổi); kiểm tra lại.')
+    return text
+
+
+def _phone(text: str) -> str:
+    raw = str(text or '').strip()
+    digits = raw.replace('+', '', 1) if raw.startswith('+') else raw
+    for ch in ' -.()':
+        digits = digits.replace(ch, '')
+    if not digits.isdigit():
+        raise ReviewRequired('Số điện thoại phải gồm chữ số (có thể có dấu cách, gạch, dấu chấm, +84).')
+    if raw.startswith('+84') or (digits.startswith('84') and len(digits) == 11):
+        digits = '0' + digits[2:]
+    if not digits.startswith('0'):
+        raise ReviewRequired('Số điện thoại thiếu số 0 đầu (có thể Excel đã đổi thành số); kiểm tra lại.')
+    if not 8 <= len(digits) <= 11:
+        raise ReviewRequired('Số điện thoại phải có 8–11 chữ số.')
+    return digits
+
+
 def ohdemo_record(row: dict) -> dict:
     """Ánh xạ một dòng Excel sang các trường của OHDemo (Patient Profile). Ném ReviewRequired nếu thiếu/sai.
 
@@ -110,15 +170,14 @@ def ohdemo_record(row: dict) -> dict:
     last, middle, given = v.get('Patient Last Name', ''), v.get('Patient Middle Name', ''), v.get('Patient Given Name', '')
     if not last or not given:
         raise ReviewRequired('Thiếu họ hoặc tên.')
-    sex = v.get('Sex', '')
-    if sex not in ('Nam', 'Nữ', 'Khác'):
-        raise ReviewRequired('Giới tính phải là Nam / Nữ / Khác.')
-    birth = dob(row['values'].get('Date Of Birth'))               # YYYY-MM-DD
+    last, middle, given = _check_name('Họ', last), _check_name('Tên đệm', middle), _check_name('Tên', given)
+    sex = _sex(v.get('Sex', ''))
+    birth = _birth(row['values'].get('Date Of Birth'))            # YYYY-MM-DD
     y, m, d = birth.split('-')
-    phone = v.get('Business Phone Number', '').replace(' ', '')
-    if len(phone) < 8 or not phone.isdigit():
-        raise ReviewRequired('Số điện thoại phải gồm chữ số (tối thiểu 8).')
+    phone = _phone(v.get('Business Phone Number', ''))
     address = v.get('Patient Address', '')
+    if len(address) > 250:
+        raise ReviewRequired(f'Địa chỉ quá dài ({len(address)} ký tự, tối đa 250); rút gọn rồi nhập tay.')
     return dict(
         title=v.get('Title', ''), first=last, middle=middle, last=given,
         full_name=' '.join(p for p in (last, middle, given) if p),

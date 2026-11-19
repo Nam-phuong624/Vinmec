@@ -24,7 +24,7 @@
 ## Giao diện
 
 - Trang 1 (xem): Identification, Contact, Personal, Employment theo ảnh tham chiếu; nút Edit ở cuối.
-- Trang 2 (Edit): Name (Local/Other), Name Status, Sex, Date of Birth (nhập `dd/mm/yyyy`), Phone, Email, Addresses (nút + mở hộp địa chỉ), Nationality, Language, Ethnicity, Occupation.
+- Trang 2 (Edit): Name (Local/Other), Name Status, Sex, Date of Birth (nhập `dd/mm/yyyy`), Phone, Email, Addresses (bấm + thì các ô Tỉnh/Thành phố, Phường/Xã, Số nhà/Đường mở rộng ngay bên dưới trong cùng trang, bấm Add để thêm; không có cửa sổ riêng), Nationality, Language, Ethnicity, Occupation.
 - Điều chỉnh so với ảnh: ô tìm PID/tên và nút Save do bên mô phỏng bổ sung; vị trí nút Save của OH thật chưa được xác nhận. Menu trái và các tab khác chỉ là hình thức.
 - Các control có `Name`/`AccessibleName` cố định (ví dụ `pid-search`, `edit-toggle`, `edit-phone`) để công cụ UI Automation điều khiển được.
 

@@ -27,6 +27,25 @@ Từ mã nguồn: `python .\scripts\start.py` (cần `pip install -r requirement
 - Chạy lại cùng file là an toàn: dòng đã có sẽ báo "Không đổi", không tạo trùng.
 - Nhật ký kỹ thuật ở `runtime/audit.jsonl` (chỉ sự kiện, số dòng, PID; không ghi dữ liệu cá nhân).
 
+## An toàn khi có thao tác khác hoặc bị ngắt giữa chừng
+
+- Trước khi ghi, RPA kiểm tra lại: kết quả tìm kiếm đúng của dòng này, trang đang mở đúng hồ sơ (PID, họ tên, năm sinh), form đúng dữ liệu Excel. Sau khi lưu, RPA **đọc lại hồ sơ** và so với Excel. Có gì lệch thì không báo thành công mà báo "Lỗi" nêu rõ lý do (thêm khoảng 1,5 giây mỗi dòng).
+- Nếu người dùng thao tác trên OH trong lúc RPA chạy (tìm hồ sơ khác, sửa ô, bấm nút), dòng đang chạy báo lỗi thay vì ghi nhầm; hồ sơ mới đã tạo dở được nêu trong thông báo (PID, hoặc "có thể đã tạo hồ sơ mới", tìm theo họ tên). Chạy lại sẽ hoàn tất, không tạo trùng. Nên tránh thao tác trên OH khi RPA đang chạy.
+- OH bị đóng giữa chừng: báo "Mất kết nối: cửa sổ OH đã bị đóng", không báo thành công.
+- Nhật ký tiến độ `runtime/journal_<tên file>.jsonl` ghi ngay khi bắt đầu/kết thúc từng dòng; mở lại RPA sẽ đánh dấu dòng bị ngắt giữa chừng và chạy lại. `ds lỗi.xlsx` được ghi ngay sau mỗi dòng lỗi/cần điền tay, không đợi hết lượt chạy.
+- Giới hạn: nếu chính người dùng sửa họ tên của hồ sơ rồi RPA lưu, RPA báo lỗi nêu PID nhưng không tự sửa lại; người duyệt sửa tay.
+- Kiểm thử: xem `KIEM_THU_RPA.md` (nhóm I, J) và `bieu_do/`.
+
+## Kiểm tra và hoàn tác sau khi RPA đã ghi
+
+OH là phần mềm đóng nên không có "hoàn tác" bên trong OH; RPA tự giữ vết và có công cụ kiểm tra, khôi phục. Các file nằm trong thư mục ngày của `ds bung` (đã `.gitignore`, chứa dữ liệu cá nhân thật, không đưa vào repo, nên hạn chế quyền truy cập):
+
+- `nhat_ky_thay_doi.jsonl`: với mỗi dòng đã xử lý xong, ghi PID, hành động (tạo / cập nhật / giữ), **giá trị trước và sau** của hồ sơ, và dữ liệu Excel mong đợi. Ghi ngay sau mỗi dòng.
+- `bao_cao_thay_doi.xlsx`: bản đọc được cho người duyệt (mỗi trường đã đổi một dòng, cũ → mới, và các mục cần điền tay).
+- Nút **Đối soát (chỉ đọc)**: mở lại từng hồ sơ đã xử lý, so với Excel, báo Khớp / LỆCH / TRÙNG / KHÔNG TÌM THẤY (`bao_cao_doi_soat.xlsx`). Không ghi gì vào OH. Nên chạy lại vào ngày hôm sau để bắt cả thay đổi do người khác.
+- Nút **Khôi phục lượt chạy…**: trả các hồ sơ đã **cập nhật** về giá trị trước. Hồ sơ đã bị ai sửa tiếp sau lượt chạy thì bỏ qua (không ghi đè). Địa chỉ RPA đã thêm không xóa được bằng giao diện: báo để xóa tay. Hồ sơ **tạo mới** không xóa được: chỉ liệt kê (`bao_cao_khoi_phuc.xlsx`) để người có quyền vô hiệu hoặc gộp theo quy trình của OH.
+- Hạn chế: khôi phục chỉ đưa về đúng trạng thái RPA đã đọc trước khi ghi; nếu hồ sơ OH thật có trường RPA không đọc (ví dụ lịch sử, gói khám) thì không khôi phục được các trường đó.
+
 ## Chạy nền
 
 RPA không gõ phím, không click chuột, không chiếm tiêu điểm: chỉ gửi giá trị/nút bấm thẳng vào control của OHDemo qua UI Automation (mỗi dòng ~2–3 giây).

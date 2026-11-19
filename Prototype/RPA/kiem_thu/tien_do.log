@@ -1,0 +1,479 @@
+19:07:00 Bắt đầu kiểm thử 19/11/2026 19:07
+19:07:00 Đã sinh 266 ca; file du_lieu_kiem_thu.xlsx
+19:07:05 Chuẩn bị tiền điều kiện nhóm D
+19:07:09 === Pha 1: nhóm A (80 người mới) ===
+19:07:13 A001   CREATE  → CREATE  Đã tạo · PID NEW000004 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:07:17 A002   CREATE  → CREATE  Đã tạo · PID NEW000005 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:07:21 A003   CREATE  → CREATE  Đã tạo · PID NEW000006 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:07:25 A004   CREATE  → CREATE  Đã tạo · PID NEW000007 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:07:29 A005   CREATE  → CREATE  Đã tạo · PID NEW000008 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:07:33 A006   CREATE  → CREATE  Đã tạo · PID NEW000009 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:07:37 A007   CREATE  → CREATE  Đã tạo · PID NEW000010 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:07:41 A008   CREATE  → CREATE  Đã tạo · PID NEW000011 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:07:45 A009   CREATE  → CREATE  Đã tạo · PID NEW000012 · Title, Sex, Ngày sinh, Địa chỉ
+19:07:49 A010   CREATE  → CREATE  Đã tạo · PID NEW000013 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:07:53 A011   CREATE  → CREATE  Đã tạo · PID NEW000014 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:07:56 A012   CREATE  → CREATE  Đã tạo · PID NEW000015 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:00 A013   CREATE  → CREATE  Đã tạo · PID NEW000016 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:04 A014   CREATE  → CREATE  Đã tạo · PID NEW000017 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:08 A015   CREATE  → CREATE  Đã tạo · PID NEW000018 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:12 A016   CREATE  → CREATE  Đã tạo · PID NEW000019 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:16 A017   CREATE  → CREATE  Đã tạo · PID NEW000020 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:19 A018   CREATE  → CREATE  Đã tạo · PID NEW000021 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:23 A019   CREATE  → CREATE  Đã tạo · PID NEW000022 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:27 A020   CREATE  → CREATE  Đã tạo · PID NEW000023 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:31 A021   CREATE  → CREATE  Đã tạo · PID NEW000024 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:35 A022   CREATE  → CREATE  Đã tạo · PID NEW000025 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:39 A023   CREATE  → CREATE  Đã tạo · PID NEW000026 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:43 A024   CREATE  → CREATE  Đã tạo · PID NEW000027 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:47 A025   CREATE  → CREATE  Đã tạo · PID NEW000028 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:51 A026   CREATE  → CREATE  Đã tạo · PID NEW000029 · Title, Sex, Ngày sinh, Địa chỉ
+19:08:55 A027   CREATE  → CREATE  Đã tạo · PID NEW000030 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:08:59 A028   CREATE  → CREATE  Đã tạo · PID NEW000031 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:02 A029   CREATE  → CREATE  Đã tạo · PID NEW000032 · Title, Sex, Ngày sinh, Địa chỉ
+19:09:06 A030   CREATE  → CREATE  Đã tạo · PID NEW000033 · Title, Sex, Ngày sinh, Địa chỉ
+19:09:10 A031   CREATE  → CREATE  Đã tạo · PID NEW000034 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:13 A032   CREATE  → CREATE  Đã tạo · PID NEW000035 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:17 A033   CREATE  → CREATE  Đã tạo · PID NEW000036 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:21 A034   CREATE  → CREATE  Đã tạo · PID NEW000037 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:25 A035   CREATE  → CREATE  Đã tạo · PID NEW000038 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:29 A036   CREATE  → CREATE  Đã tạo · PID NEW000039 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:33 A037   CREATE  → CREATE  Đã tạo · PID NEW000040 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:37 A038   CREATE  → CREATE  Đã tạo · PID NEW000041 · Title, Sex, Ngày sinh, Địa chỉ
+19:09:41 A039   CREATE  → CREATE  Đã tạo · PID NEW000042 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:45 A040   CREATE  → CREATE  Đã tạo · PID NEW000043 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:49 A041   CREATE  → CREATE  Đã tạo · PID NEW000044 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:52 A042   CREATE  → CREATE  Đã tạo · PID NEW000045 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:09:56 A043   CREATE  → CREATE  Đã tạo · PID NEW000046 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:00 A044   CREATE  → CREATE  Đã tạo · PID NEW000047 · Title, Sex, Ngày sinh, Địa chỉ
+19:10:04 A045   CREATE  → CREATE  Đã tạo · PID NEW000048 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:08 A046   CREATE  → CREATE  Đã tạo · PID NEW000049 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:12 A047   CREATE  → CREATE  Đã tạo · PID NEW000050 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:16 A048   CREATE  → CREATE  Đã tạo · PID NEW000051 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:19 A049   CREATE  → CREATE  Đã tạo · PID NEW000052 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:23 A050   CREATE  → CREATE  Đã tạo · PID NEW000053 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:27 A051   CREATE  → CREATE  Đã tạo · PID NEW000054 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:31 A052   CREATE  → CREATE  Đã tạo · PID NEW000055 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:35 A053   CREATE  → CREATE  Đã tạo · PID NEW000056 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:39 A054   CREATE  → CREATE  Đã tạo · PID NEW000057 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:43 A055   CREATE  → CREATE  Đã tạo · PID NEW000058 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:47 A056   CREATE  → CREATE  Đã tạo · PID NEW000059 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:51 A057   CREATE  → CREATE  Đã tạo · PID NEW000060 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:55 A058   CREATE  → CREATE  Đã tạo · PID NEW000061 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:10:59 A059   CREATE  → CREATE  Đã tạo · PID NEW000062 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:02 A060   CREATE  → CREATE  Đã tạo · PID NEW000063 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:07 A061   CREATE  → CREATE  Đã tạo · PID NEW000064 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:11 A062   CREATE  → CREATE  Đã tạo · PID NEW000065 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:14 A063   CREATE  → CREATE  Đã tạo · PID NEW000066 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:18 A064   CREATE  → CREATE  Đã tạo · PID NEW000067 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:22 A065   CREATE  → CREATE  Đã tạo · PID NEW000068 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:26 A066   CREATE  → CREATE  Đã tạo · PID NEW000069 · Title, Sex, Ngày sinh, Địa chỉ
+19:11:29 A067   CREATE  → CREATE  Đã tạo · PID NEW000070 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:33 A068   CREATE  → CREATE  Đã tạo · PID NEW000071 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:37 A069   CREATE  → CREATE  Đã tạo · PID NEW000072 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:41 A070   CREATE  → CREATE  Đã tạo · PID NEW000073 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:45 A071   CREATE  → CREATE  Đã tạo · PID NEW000074 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:50 A072   CREATE  → CREATE  Đã tạo · PID NEW000075 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:54 A073   CREATE  → CREATE  Đã tạo · PID NEW000076 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:11:57 A074   CREATE  → CREATE  Đã tạo · PID NEW000077 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:01 A075   CREATE  → CREATE  Đã tạo · PID NEW000078 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:05 A076   CREATE  → CREATE  Đã tạo · PID NEW000079 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:09 A077   CREATE  → CREATE  Đã tạo · PID NEW000080 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:13 A078   CREATE  → CREATE  Đã tạo · PID NEW000081 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:17 A079   CREATE  → CREATE  Đã tạo · PID NEW000082 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:21 A080   CREATE  → CREATE  Đã tạo · PID NEW000083 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:21 === Pha 2: nhóm H (100 người, khối lượng) ===
+19:12:25 H001   CREATE  → CREATE  Đã tạo · PID NEW000084 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:28 H002   CREATE  → CREATE  Đã tạo · PID NEW000085 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:32 H003   CREATE  → CREATE  Đã tạo · PID NEW000086 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:36 H004   CREATE  → CREATE  Đã tạo · PID NEW000087 · Title, Sex, Ngày sinh, Địa chỉ
+19:12:40 H005   CREATE  → CREATE  Đã tạo · PID NEW000088 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:44 H006   CREATE  → CREATE  Đã tạo · PID NEW000089 · Title, Sex, Ngày sinh, Địa chỉ
+19:12:48 H007   CREATE  → CREATE  Đã tạo · PID NEW000090 · Title, Sex, Ngày sinh, Địa chỉ
+19:12:52 H008   CREATE  → CREATE  Đã tạo · PID NEW000091 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:12:56 H009   CREATE  → CREATE  Đã tạo · PID NEW000092 · Title, Sex, Ngày sinh, Địa chỉ
+19:13:00 H010   CREATE  → CREATE  Đã tạo · PID NEW000093 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:04 H011   CREATE  → CREATE  Đã tạo · PID NEW000094 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:07 H012   CREATE  → CREATE  Đã tạo · PID NEW000095 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:11 H013   CREATE  → CREATE  Đã tạo · PID NEW000096 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:16 H014   CREATE  → CREATE  Đã tạo · PID NEW000097 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:19 H015   CREATE  → CREATE  Đã tạo · PID NEW000098 · Title, Sex, Ngày sinh, Địa chỉ
+19:13:23 H016   CREATE  → CREATE  Đã tạo · PID NEW000099 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:28 H017   CREATE  → CREATE  Đã tạo · PID NEW000100 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:31 H018   CREATE  → CREATE  Đã tạo · PID NEW000101 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:35 H019   CREATE  → CREATE  Đã tạo · PID NEW000102 · Title, Sex, Ngày sinh, Địa chỉ
+19:13:39 H020   CREATE  → CREATE  Đã tạo · PID NEW000103 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:43 H021   CREATE  → CREATE  Đã tạo · PID NEW000104 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:46 H022   CREATE  → CREATE  Đã tạo · PID NEW000105 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:50 H023   CREATE  → CREATE  Đã tạo · PID NEW000106 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:54 H024   CREATE  → CREATE  Đã tạo · PID NEW000107 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:13:58 H025   CREATE  → CREATE  Đã tạo · PID NEW000108 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:02 H026   CREATE  → CREATE  Đã tạo · PID NEW000109 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:06 H027   CREATE  → CREATE  Đã tạo · PID NEW000110 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:10 H028   CREATE  → CREATE  Đã tạo · PID NEW000111 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:14 H029   CREATE  → CREATE  Đã tạo · PID NEW000112 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:17 H030   CREATE  → CREATE  Đã tạo · PID NEW000113 · Title, Sex, Ngày sinh, Địa chỉ
+19:14:22 H031   CREATE  → CREATE  Đã tạo · PID NEW000114 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:25 H032   CREATE  → CREATE  Đã tạo · PID NEW000115 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:29 H033   CREATE  → CREATE  Đã tạo · PID NEW000116 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:33 H034   CREATE  → CREATE  Đã tạo · PID NEW000117 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:37 H035   CREATE  → CREATE  Đã tạo · PID NEW000118 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:41 H036   CREATE  → CREATE  Đã tạo · PID NEW000119 · Title, Sex, Ngày sinh, Địa chỉ
+19:14:44 H037   CREATE  → CREATE  Đã tạo · PID NEW000120 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:48 H038   CREATE  → CREATE  Đã tạo · PID NEW000121 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:14:52 H039   CREATE  → CREATE  Đã tạo · PID NEW000122 · Title, Sex, Ngày sinh, Địa chỉ
+19:14:56 H040   CREATE  → CREATE  Đã tạo · PID NEW000123 · Title, Sex, Ngày sinh, Địa chỉ
+19:15:00 H041   CREATE  → CREATE  Đã tạo · PID NEW000124 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:03 H042   CREATE  → CREATE  Đã tạo · PID NEW000125 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:07 H043   CREATE  → CREATE  Đã tạo · PID NEW000126 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:11 H044   CREATE  → CREATE  Đã tạo · PID NEW000127 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:15 H045   CREATE  → CREATE  Đã tạo · PID NEW000128 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:19 H046   CREATE  → CREATE  Đã tạo · PID NEW000129 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:23 H047   CREATE  → CREATE  Đã tạo · PID NEW000130 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:27 H048   CREATE  → CREATE  Đã tạo · PID NEW000131 · Title, Sex, Ngày sinh, Địa chỉ
+19:15:31 H049   CREATE  → CREATE  Đã tạo · PID NEW000132 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:35 H050   CREATE  → CREATE  Đã tạo · PID NEW000133 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:39 H051   CREATE  → CREATE  Đã tạo · PID NEW000134 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:43 H052   CREATE  → CREATE  Đã tạo · PID NEW000135 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:46 H053   CREATE  → CREATE  Đã tạo · PID NEW000136 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:50 H054   CREATE  → CREATE  Đã tạo · PID NEW000137 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:54 H055   CREATE  → CREATE  Đã tạo · PID NEW000138 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:15:57 H056   CREATE  → CREATE  Đã tạo · PID NEW000139 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:01 H057   CREATE  → CREATE  Đã tạo · PID NEW000140 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:05 H058   CREATE  → CREATE  Đã tạo · PID NEW000141 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:09 H059   CREATE  → CREATE  Đã tạo · PID NEW000142 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:13 H060   CREATE  → CREATE  Đã tạo · PID NEW000143 · Title, Sex, Ngày sinh, Địa chỉ
+19:16:17 H061   CREATE  → CREATE  Đã tạo · PID NEW000144 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:21 H062   CREATE  → CREATE  Đã tạo · PID NEW000145 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:25 H063   CREATE  → CREATE  Đã tạo · PID NEW000146 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:28 H064   CREATE  → CREATE  Đã tạo · PID NEW000147 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:32 H065   CREATE  → CREATE  Đã tạo · PID NEW000148 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:36 H066   CREATE  → CREATE  Đã tạo · PID NEW000149 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:40 H067   CREATE  → CREATE  Đã tạo · PID NEW000150 · Title, Sex, Ngày sinh, Địa chỉ
+19:16:44 H068   CREATE  → CREATE  Đã tạo · PID NEW000151 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:48 H069   CREATE  → CREATE  Đã tạo · PID NEW000152 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:52 H070   CREATE  → CREATE  Đã tạo · PID NEW000153 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:56 H071   CREATE  → CREATE  Đã tạo · PID NEW000154 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:16:59 H072   CREATE  → CREATE  Đã tạo · PID NEW000155 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:03 H073   CREATE  → CREATE  Đã tạo · PID NEW000156 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:07 H074   CREATE  → CREATE  Đã tạo · PID NEW000157 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:11 H075   CREATE  → CREATE  Đã tạo · PID NEW000158 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:15 H076   CREATE  → CREATE  Đã tạo · PID NEW000159 · Title, Sex, Ngày sinh, Địa chỉ
+19:17:18 H077   CREATE  → CREATE  Đã tạo · PID NEW000160 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:22 H078   CREATE  → CREATE  Đã tạo · PID NEW000161 · Title, Sex, Ngày sinh, Địa chỉ
+19:17:26 H079   CREATE  → CREATE  Đã tạo · PID NEW000162 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:30 H080   CREATE  → CREATE  Đã tạo · PID NEW000163 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:34 H081   CREATE  → CREATE  Đã tạo · PID NEW000164 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:38 H082   CREATE  → CREATE  Đã tạo · PID NEW000165 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:42 H083   CREATE  → CREATE  Đã tạo · PID NEW000166 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:46 H084   CREATE  → CREATE  Đã tạo · PID NEW000167 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:50 H085   CREATE  → CREATE  Đã tạo · PID NEW000168 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:54 H086   CREATE  → CREATE  Đã tạo · PID NEW000169 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:17:58 H087   CREATE  → CREATE  Đã tạo · PID NEW000170 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:18:01 H088   CREATE  → CREATE  Đã tạo · PID NEW000171 · Title, Sex, Ngày sinh, Địa chỉ
+19:18:05 H089   CREATE  → CREATE  Đã tạo · PID NEW000172 · Title, Sex, Ngày sinh, Địa chỉ
+19:18:09 H090   CREATE  → CREATE  Đã tạo · PID NEW000173 · Title, Sex, Ngày sinh, Địa chỉ
+19:18:12 H091   CREATE  → CREATE  Đã tạo · PID NEW000174 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:18:16 H092   CREATE  → CREATE  Đã tạo · PID NEW000175 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:18:20 H093   CREATE  → CREATE  Đã tạo · PID NEW000176 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:18:24 H094   CREATE  → CREATE  Đã tạo · PID NEW000177 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:18:28 H095   CREATE  → CREATE  Đã tạo · PID NEW000178 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:18:32 H096   CREATE  → CREATE  Đã tạo · PID NEW000179 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:18:36 H097   CREATE  → CREATE  Đã tạo · PID NEW000180 · Title, Sex, Ngày sinh, Địa chỉ
+19:18:40 H098   CREATE  → CREATE  Đã tạo · PID NEW000181 · Title, Sex, Ngày sinh, Địa chỉ
+19:18:44 H099   CREATE  → CREATE  Đã tạo · PID NEW000182 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:18:48 H100   CREATE  → CREATE  Đã tạo · PID NEW000183 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:18:48 === Pha 3: nhóm C, D, E ===
+19:18:51 C01S   CREATE  → CREATE  Đã tạo · PID NEW000184 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:18:55 C01    UPDATE  → UPDATE  Đã cập nhật · PID NEW000184 · Điện thoại
+19:18:59 C02S   CREATE  → CREATE  Đã tạo · PID NEW000185 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:19:03 C02    UPDATE  → UPDATE  Đã cập nhật · PID NEW000185 · Ngày sinh
+19:19:07 C03S   CREATE  → CREATE  Đã tạo · PID NEW000186 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:19:11 C03    UPDATE  → UPDATE  Đã cập nhật · PID NEW000186 · Địa chỉ
+19:19:14 C04S   CREATE  → CREATE  Đã tạo · PID NEW000187 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:19:17 C04    SAME    → SAME    Không đổi · PID NEW000187
+19:19:20 C05S   CREATE  → CREATE  Đã tạo · PID NEW000188 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:19:24 C05    UPDATE  → UPDATE  Đã cập nhật · PID NEW000188 · Title
+19:19:28 C06S   CREATE  → CREATE  Đã tạo · PID NEW000189 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:19:31 C06    UPDATE  → UPDATE  Đã cập nhật · PID NEW000189 · Họ, Đệm, Tên
+19:19:35 C07S   CREATE  → CREATE  Đã tạo · PID NEW000190 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:19:39 C07    UPDATE  → UPDATE  Đã cập nhật · PID NEW000190 · Họ, Đệm, Tên
+19:19:43 C08S   CREATE  → CREATE  Đã tạo · PID NEW000191 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:19:45 C08    SAME    → SAME    Không đổi · PID NEW000191
+19:19:49 C09S   CREATE  → CREATE  Đã tạo · PID NEW000192 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:19:51 C09    SAME    → SAME    Không đổi · PID NEW000192
+19:19:55 C10S   CREATE  → CREATE  Đã tạo · PID NEW000193 · Title, Sex, Ngày sinh, Địa chỉ
+19:19:58 C10    UPDATE  → UPDATE  Đã cập nhật · PID NEW000193 · Nationality
+19:20:02 C11S   CREATE  → CREATE  Đã tạo · PID NEW000194 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:20:07 C11    UPDATE  → UPDATE  Đã cập nhật · PID NEW000194 · Điện thoại, Địa chỉ
+19:20:10 C12S   CREATE  → CREATE  Đã tạo · PID NEW000195 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:20:14 C12    UPDATE  → UPDATE  Đã cập nhật · PID NEW000195 · Title, Sex
+19:20:18 C13S   CREATE  → CREATE  Đã tạo · PID NEW000196 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:20:18 C13    ERROR   → ERROR   ReviewRequired: Số điện thoại phải gồm chữ số (có thể có dấu cách, gạch, dấu chấm, +84).
+19:20:21 C14S   CREATE  → CREATE  Đã tạo · PID NEW000197 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:20:24 C14    SAME    → SAME    Không đổi · PID NEW000197
+19:20:28 C15S   CREATE  → CREATE  Đã tạo · PID NEW000198 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:20:32 C15    CREATE  → CREATE  Đã tạo · PID NEW000199 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:20:33 D01    ERROR   → ERROR   ReviewRequired: Có 2 hồ sơ cùng tên và năm sinh (NEW000001, NEW000002); chọn tay.
+19:20:37 D02    CREATE  → CREATE  Đã tạo · PID NEW000200 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:20:39 D03    ERROR   → ERROR   ReviewRequired: Trùng tên và số điện thoại nhưng khác năm sinh; kiểm tra tay.
+19:20:43 D04    CREATE  → CREATE  Đã tạo · PID NEW000201 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:20:47 D05A   CREATE  → CREATE  Đã tạo · PID NEW000202 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:20:49 D05B   SAME    → SAME    Không đổi · PID NEW000202
+19:20:53 D06A   CREATE  → CREATE  Đã tạo · PID NEW000203 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:20:57 D06B   UPDATE  → UPDATE  Đã cập nhật · PID NEW000203 · Điện thoại
+19:21:00 D07    UPDATE  → UPDATE  Đã cập nhật · PID DEMO0004 · Điện thoại
+19:21:04 D08    UPDATE  → UPDATE  Đã cập nhật · PID DEMO0005 · Họ, Đệm, Tên
+19:21:05 E01    ERROR   → ERROR   ReviewRequired: Thiếu họ hoặc tên.
+19:21:08 E02    ERROR   → ERROR   ReviewRequired: Thiếu họ hoặc tên.
+19:21:10 E03    ERROR   → ERROR   ReviewRequired: Thiếu họ hoặc tên.
+19:21:12 E04    ERROR   → ERROR   ReviewRequired: Thiếu họ hoặc tên.
+19:21:16 E05    CREATE  → CREATE  Đã tạo · PID NEW000204 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:21:18 E06    ERROR   → ERROR   ReviewRequired: Tên có ký tự không hợp lệ ('2'); kiểm tra lại tên trong Excel.
+19:21:20 E07    ERROR   → ERROR   ReviewRequired: Tên có ký tự không hợp lệ ('😀'); kiểm tra lại tên trong Excel.
+19:21:22 E08    ERROR   → ERROR   ReviewRequired: Tên có ký tự không hợp lệ ('<'); kiểm tra lại tên trong Excel.
+19:21:26 E09    CREATE  → CREATE  Đã tạo · PID NEW000205 · Title, Sex, Ngày sinh, Địa chỉ
+19:21:30 E10    CREATE  → CREATE  Đã tạo · PID NEW000206 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:21:31 E11    ERROR   → ERROR   ReviewRequired: Giới tính phải là Nam / Nữ / Khác.
+19:21:33 E12    ERROR   → ERROR   ReviewRequired: Giới tính phải là Nam / Nữ / Khác.
+19:21:38 E13    CREATE  → CREATE  Đã tạo · PID NEW000207 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:21:42 E14    CREATE  → CREATE  Đã tạo · PID NEW000208 · Title, Sex, Ngày sinh, Địa chỉ
+19:21:46 E15    CREATE  → CREATE  Đã tạo · PID NEW000209 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:21:49 E16    CREATE  → CREATE  Đã tạo · PID NEW000210 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:21:54 E17    CREATE  → CREATE  Đã tạo · PID NEW000211 · Sex, Ngày sinh, Nationality, Địa chỉ
+19:21:55 E18    ERROR   → ERROR   ReviewRequired: Ngày sinh không hợp lệ (cần dd/mm/yyyy).
+19:21:58 E19    ERROR   → ERROR   ReviewRequired: Ngày sinh không hợp lệ (cần dd/mm/yyyy).
+19:22:00 E20    ERROR   → ERROR   ReviewRequired: Ngày sinh không hợp lệ (cần dd/mm/yyyy).
+19:22:04 E21    CREATE  → CREATE  Đã tạo · PID NEW000212 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:22:06 E22    ERROR   → ERROR   ReviewRequired: Ngày sinh không hợp lệ (cần dd/mm/yyyy).
+19:22:08 E23    ERROR   → ERROR   ReviewRequired: Ngày sinh 01/01/2099 ở tương lai.
+19:22:10 E24    ERROR   → ERROR   ReviewRequired: Ngày sinh 01/01/1850 quá xa (trên 120 tuổi); kiểm tra lại.
+19:22:14 E25    CREATE  → CREATE  Đã tạo · PID NEW000213 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:22:18 E26    CREATE  → CREATE  Đã tạo · PID NEW000214 · Title, Sex, Ngày sinh, Địa chỉ
+19:22:20 E27    ERROR   → ERROR   ReviewRequired: Số điện thoại phải gồm chữ số (có thể có dấu cách, gạch, dấu chấm, +84).
+19:22:22 E28    ERROR   → ERROR   ReviewRequired: Số điện thoại thiếu số 0 đầu (có thể Excel đã đổi thành số); kiểm tra lại.
+19:22:24 E29    ERROR   → ERROR   ReviewRequired: Số điện thoại phải gồm chữ số (có thể có dấu cách, gạch, dấu chấm, +84).
+19:22:29 E30    CREATE  → CREATE  Đã tạo · PID NEW000215 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:22:32 E31    CREATE  → CREATE  Đã tạo · PID NEW000216 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:22:36 E32    CREATE  → CREATE  Đã tạo · PID NEW000217 · Title, Sex, Ngày sinh, Địa chỉ
+19:22:38 E33    ERROR   → ERROR   ReviewRequired: Số điện thoại phải có 8–11 chữ số.
+19:22:40 E34    ERROR   → ERROR   ReviewRequired: Số điện thoại thiếu số 0 đầu (có thể Excel đã đổi thành số); kiểm tra lại.
+19:22:44 E35    MANUAL  → MANUAL  PID NEW000218 · cần điền tay: Title "Dr" không có trong danh mục
+19:22:48 E36    CREATE  → CREATE  Đã tạo · PID NEW000219 · Sex, Ngày sinh, Nationality, Địa chỉ
+19:22:52 E37    MANUAL  → MANUAL  PID NEW000220 · cần điền tay: Nationality "Lào" không có trong danh mục
+19:22:56 E38    MANUAL  → MANUAL  PID NEW000221 · cần điền tay: Nationality "Viet Nam" không có trong danh mục
+19:23:00 E39    CREATE  → CREATE  Đã tạo · PID NEW000222 · Title, Sex, Ngày sinh, Nationality
+19:23:03 E40    MANUAL  → MANUAL  PID NEW000223 · cần điền tay: Địa chỉ không tách được: "Hà Nội"
+19:23:07 E41    MANUAL  → MANUAL  PID NEW000224 · cần điền tay: Địa chỉ không tách được: ",,,"
+19:23:11 E42    CREATE  → CREATE  Đã tạo · PID NEW000225 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:23:12 E43    ERROR   → ERROR   ReviewRequired: Địa chỉ quá dài (303 ký tự, tối đa 250); rút gọn rồi nhập tay.
+19:23:17 E44    CREATE  → CREATE  Đã tạo · PID NEW000226 · Title, Sex, Ngày sinh, Địa chỉ
+19:23:20 E45    CREATE  → CREATE  Đã tạo · PID NEW000227 · Title, Sex, Ngày sinh, Địa chỉ
+19:23:24 E46    CREATE  → CREATE  Đã tạo · PID NEW000228 · Title, Sex, Ngày sinh, Nationality, Địa chỉ
+19:23:24 === Pha 4: đối soát lại toàn bộ hồ sơ trong OH ===
+19:30:23 === Pha 5: chạy lại nhóm A và H lần 2 ===
+19:30:25 A001-L2 SAME    → SAME    Không đổi · PID NEW000004
+19:30:28 A002-L2 SAME    → SAME    Không đổi · PID NEW000005
+19:30:30 A003-L2 SAME    → SAME    Không đổi · PID NEW000006
+19:30:32 A004-L2 SAME    → SAME    Không đổi · PID NEW000007
+19:30:34 A005-L2 SAME    → SAME    Không đổi · PID NEW000008
+19:30:36 A006-L2 SAME    → SAME    Không đổi · PID NEW000009
+19:30:38 A007-L2 SAME    → SAME    Không đổi · PID NEW000010
+19:30:41 A008-L2 SAME    → SAME    Không đổi · PID NEW000011
+19:30:43 A009-L2 SAME    → SAME    Không đổi · PID NEW000012
+19:30:45 A010-L2 SAME    → SAME    Không đổi · PID NEW000013
+19:30:47 A011-L2 SAME    → SAME    Không đổi · PID NEW000014
+19:30:49 A012-L2 SAME    → SAME    Không đổi · PID NEW000015
+19:30:52 A013-L2 SAME    → SAME    Không đổi · PID NEW000016
+19:30:54 A014-L2 SAME    → SAME    Không đổi · PID NEW000017
+19:30:56 A015-L2 SAME    → SAME    Không đổi · PID NEW000018
+19:30:58 A016-L2 SAME    → SAME    Không đổi · PID NEW000019
+19:31:00 A017-L2 SAME    → SAME    Không đổi · PID NEW000020
+19:31:03 A018-L2 SAME    → SAME    Không đổi · PID NEW000021
+19:31:05 A019-L2 SAME    → SAME    Không đổi · PID NEW000022
+19:31:07 A020-L2 SAME    → SAME    Không đổi · PID NEW000023
+19:31:09 A021-L2 SAME    → SAME    Không đổi · PID NEW000024
+19:31:11 A022-L2 SAME    → SAME    Không đổi · PID NEW000025
+19:31:13 A023-L2 SAME    → SAME    Không đổi · PID NEW000026
+19:31:15 A024-L2 SAME    → SAME    Không đổi · PID NEW000027
+19:31:18 A025-L2 SAME    → SAME    Không đổi · PID NEW000028
+19:31:20 A026-L2 SAME    → SAME    Không đổi · PID NEW000029
+19:31:22 A027-L2 SAME    → SAME    Không đổi · PID NEW000030
+19:31:24 A028-L2 SAME    → SAME    Không đổi · PID NEW000031
+19:31:26 A029-L2 SAME    → SAME    Không đổi · PID NEW000032
+19:31:29 A030-L2 SAME    → SAME    Không đổi · PID NEW000033
+19:31:31 A031-L2 SAME    → SAME    Không đổi · PID NEW000034
+19:31:33 A032-L2 SAME    → SAME    Không đổi · PID NEW000035
+19:31:35 A033-L2 SAME    → SAME    Không đổi · PID NEW000036
+19:31:37 A034-L2 SAME    → SAME    Không đổi · PID NEW000037
+19:31:39 A035-L2 SAME    → SAME    Không đổi · PID NEW000038
+19:31:41 A036-L2 SAME    → SAME    Không đổi · PID NEW000039
+19:31:44 A037-L2 SAME    → SAME    Không đổi · PID NEW000040
+19:31:46 A038-L2 SAME    → SAME    Không đổi · PID NEW000041
+19:31:48 A039-L2 SAME    → SAME    Không đổi · PID NEW000042
+19:31:50 A040-L2 SAME    → SAME    Không đổi · PID NEW000043
+19:31:53 A041-L2 SAME    → SAME    Không đổi · PID NEW000044
+19:31:55 A042-L2 SAME    → SAME    Không đổi · PID NEW000045
+19:31:57 A043-L2 SAME    → SAME    Không đổi · PID NEW000046
+19:31:59 A044-L2 SAME    → SAME    Không đổi · PID NEW000047
+19:32:02 A045-L2 SAME    → SAME    Không đổi · PID NEW000048
+19:32:04 A046-L2 SAME    → SAME    Không đổi · PID NEW000049
+19:32:06 A047-L2 SAME    → SAME    Không đổi · PID NEW000050
+19:32:08 A048-L2 SAME    → SAME    Không đổi · PID NEW000051
+19:32:10 A049-L2 SAME    → SAME    Không đổi · PID NEW000052
+19:32:12 A050-L2 SAME    → SAME    Không đổi · PID NEW000053
+19:32:15 A051-L2 SAME    → SAME    Không đổi · PID NEW000054
+19:32:17 A052-L2 SAME    → SAME    Không đổi · PID NEW000055
+19:32:19 A053-L2 SAME    → SAME    Không đổi · PID NEW000056
+19:32:21 A054-L2 SAME    → SAME    Không đổi · PID NEW000057
+19:32:23 A055-L2 SAME    → SAME    Không đổi · PID NEW000058
+19:32:25 A056-L2 SAME    → SAME    Không đổi · PID NEW000059
+19:32:28 A057-L2 SAME    → SAME    Không đổi · PID NEW000060
+19:32:30 A058-L2 SAME    → SAME    Không đổi · PID NEW000061
+19:32:32 A059-L2 SAME    → SAME    Không đổi · PID NEW000062
+19:32:34 A060-L2 SAME    → SAME    Không đổi · PID NEW000063
+19:32:36 A061-L2 SAME    → SAME    Không đổi · PID NEW000064
+19:32:38 A062-L2 SAME    → SAME    Không đổi · PID NEW000065
+19:32:41 A063-L2 SAME    → SAME    Không đổi · PID NEW000066
+19:32:43 A064-L2 SAME    → SAME    Không đổi · PID NEW000067
+19:32:45 A065-L2 SAME    → SAME    Không đổi · PID NEW000068
+19:32:47 A066-L2 SAME    → SAME    Không đổi · PID NEW000069
+19:32:49 A067-L2 SAME    → SAME    Không đổi · PID NEW000070
+19:32:52 A068-L2 SAME    → SAME    Không đổi · PID NEW000071
+19:32:54 A069-L2 SAME    → SAME    Không đổi · PID NEW000072
+19:32:56 A070-L2 SAME    → SAME    Không đổi · PID NEW000073
+19:32:58 A071-L2 SAME    → SAME    Không đổi · PID NEW000074
+19:33:00 A072-L2 SAME    → SAME    Không đổi · PID NEW000075
+19:33:03 A073-L2 SAME    → SAME    Không đổi · PID NEW000076
+19:33:05 A074-L2 SAME    → SAME    Không đổi · PID NEW000077
+19:33:07 A075-L2 SAME    → SAME    Không đổi · PID NEW000078
+19:33:10 A076-L2 SAME    → SAME    Không đổi · PID NEW000079
+19:33:12 A077-L2 SAME    → SAME    Không đổi · PID NEW000080
+19:33:14 A078-L2 SAME    → SAME    Không đổi · PID NEW000081
+19:33:16 A079-L2 SAME    → SAME    Không đổi · PID NEW000082
+19:33:18 A080-L2 SAME    → SAME    Không đổi · PID NEW000083
+19:33:20 H001-L2 SAME    → SAME    Không đổi · PID NEW000084
+19:33:23 H002-L2 SAME    → SAME    Không đổi · PID NEW000085
+19:33:25 H003-L2 SAME    → SAME    Không đổi · PID NEW000086
+19:33:27 H004-L2 SAME    → SAME    Không đổi · PID NEW000087
+19:33:29 H005-L2 SAME    → SAME    Không đổi · PID NEW000088
+19:33:31 H006-L2 SAME    → SAME    Không đổi · PID NEW000089
+19:33:33 H007-L2 SAME    → SAME    Không đổi · PID NEW000090
+19:33:36 H008-L2 SAME    → SAME    Không đổi · PID NEW000091
+19:33:38 H009-L2 SAME    → SAME    Không đổi · PID NEW000092
+19:33:40 H010-L2 SAME    → SAME    Không đổi · PID NEW000093
+19:33:42 H011-L2 SAME    → SAME    Không đổi · PID NEW000094
+19:33:44 H012-L2 SAME    → SAME    Không đổi · PID NEW000095
+19:33:47 H013-L2 SAME    → SAME    Không đổi · PID NEW000096
+19:33:49 H014-L2 SAME    → SAME    Không đổi · PID NEW000097
+19:33:51 H015-L2 SAME    → SAME    Không đổi · PID NEW000098
+19:33:53 H016-L2 SAME    → SAME    Không đổi · PID NEW000099
+19:33:55 H017-L2 SAME    → SAME    Không đổi · PID NEW000100
+19:33:57 H018-L2 SAME    → SAME    Không đổi · PID NEW000101
+19:34:00 H019-L2 SAME    → SAME    Không đổi · PID NEW000102
+19:34:02 H020-L2 SAME    → SAME    Không đổi · PID NEW000103
+19:34:04 H021-L2 SAME    → SAME    Không đổi · PID NEW000104
+19:34:06 H022-L2 SAME    → SAME    Không đổi · PID NEW000105
+19:34:08 H023-L2 SAME    → SAME    Không đổi · PID NEW000106
+19:34:10 H024-L2 SAME    → SAME    Không đổi · PID NEW000107
+19:34:13 H025-L2 SAME    → SAME    Không đổi · PID NEW000108
+19:34:15 H026-L2 SAME    → SAME    Không đổi · PID NEW000109
+19:34:17 H027-L2 SAME    → SAME    Không đổi · PID NEW000110
+19:34:20 H028-L2 SAME    → SAME    Không đổi · PID NEW000111
+19:34:22 H029-L2 SAME    → SAME    Không đổi · PID NEW000112
+19:34:24 H030-L2 SAME    → SAME    Không đổi · PID NEW000113
+19:34:26 H031-L2 SAME    → SAME    Không đổi · PID NEW000114
+19:34:28 H032-L2 SAME    → SAME    Không đổi · PID NEW000115
+19:34:30 H033-L2 SAME    → SAME    Không đổi · PID NEW000116
+19:34:32 H034-L2 SAME    → SAME    Không đổi · PID NEW000117
+19:34:34 H035-L2 SAME    → SAME    Không đổi · PID NEW000118
+19:34:36 H036-L2 SAME    → SAME    Không đổi · PID NEW000119
+19:34:39 H037-L2 SAME    → SAME    Không đổi · PID NEW000120
+19:34:41 H038-L2 SAME    → SAME    Không đổi · PID NEW000121
+19:34:43 H039-L2 SAME    → SAME    Không đổi · PID NEW000122
+19:34:45 H040-L2 SAME    → SAME    Không đổi · PID NEW000123
+19:34:47 H041-L2 SAME    → SAME    Không đổi · PID NEW000124
+19:34:50 H042-L2 SAME    → SAME    Không đổi · PID NEW000125
+19:34:52 H043-L2 SAME    → SAME    Không đổi · PID NEW000126
+19:34:54 H044-L2 SAME    → SAME    Không đổi · PID NEW000127
+19:34:56 H045-L2 SAME    → SAME    Không đổi · PID NEW000128
+19:34:58 H046-L2 SAME    → SAME    Không đổi · PID NEW000129
+19:35:00 H047-L2 SAME    → SAME    Không đổi · PID NEW000130
+19:35:02 H048-L2 SAME    → SAME    Không đổi · PID NEW000131
+19:35:05 H049-L2 SAME    → SAME    Không đổi · PID NEW000132
+19:35:07 H050-L2 SAME    → SAME    Không đổi · PID NEW000133
+19:35:09 H051-L2 SAME    → SAME    Không đổi · PID NEW000134
+19:35:11 H052-L2 SAME    → SAME    Không đổi · PID NEW000135
+19:35:14 H053-L2 SAME    → SAME    Không đổi · PID NEW000136
+19:35:16 H054-L2 SAME    → SAME    Không đổi · PID NEW000137
+19:35:18 H055-L2 SAME    → SAME    Không đổi · PID NEW000138
+19:35:20 H056-L2 SAME    → SAME    Không đổi · PID NEW000139
+19:35:22 H057-L2 SAME    → SAME    Không đổi · PID NEW000140
+19:35:25 H058-L2 SAME    → SAME    Không đổi · PID NEW000141
+19:35:27 H059-L2 SAME    → SAME    Không đổi · PID NEW000142
+19:35:29 H060-L2 SAME    → SAME    Không đổi · PID NEW000143
+19:35:31 H061-L2 SAME    → SAME    Không đổi · PID NEW000144
+19:35:33 H062-L2 SAME    → SAME    Không đổi · PID NEW000145
+19:35:35 H063-L2 SAME    → SAME    Không đổi · PID NEW000146
+19:35:38 H064-L2 SAME    → SAME    Không đổi · PID NEW000147
+19:35:40 H065-L2 SAME    → SAME    Không đổi · PID NEW000148
+19:35:42 H066-L2 SAME    → SAME    Không đổi · PID NEW000149
+19:35:44 H067-L2 SAME    → SAME    Không đổi · PID NEW000150
+19:35:46 H068-L2 SAME    → SAME    Không đổi · PID NEW000151
+19:35:49 H069-L2 SAME    → SAME    Không đổi · PID NEW000152
+19:35:51 H070-L2 SAME    → SAME    Không đổi · PID NEW000153
+19:35:53 H071-L2 SAME    → SAME    Không đổi · PID NEW000154
+19:35:55 H072-L2 SAME    → SAME    Không đổi · PID NEW000155
+19:35:57 H073-L2 SAME    → SAME    Không đổi · PID NEW000156
+19:35:59 H074-L2 SAME    → SAME    Không đổi · PID NEW000157
+19:36:02 H075-L2 SAME    → SAME    Không đổi · PID NEW000158
+19:36:04 H076-L2 SAME    → SAME    Không đổi · PID NEW000159
+19:36:06 H077-L2 SAME    → SAME    Không đổi · PID NEW000160
+19:36:08 H078-L2 SAME    → SAME    Không đổi · PID NEW000161
+19:36:10 H079-L2 SAME    → SAME    Không đổi · PID NEW000162
+19:36:13 H080-L2 SAME    → SAME    Không đổi · PID NEW000163
+19:36:15 H081-L2 SAME    → SAME    Không đổi · PID NEW000164
+19:36:17 H082-L2 SAME    → SAME    Không đổi · PID NEW000165
+19:36:19 H083-L2 SAME    → SAME    Không đổi · PID NEW000166
+19:36:21 H084-L2 SAME    → SAME    Không đổi · PID NEW000167
+19:36:24 H085-L2 SAME    → SAME    Không đổi · PID NEW000168
+19:36:26 H086-L2 SAME    → SAME    Không đổi · PID NEW000169
+19:36:28 H087-L2 SAME    → SAME    Không đổi · PID NEW000170
+19:36:30 H088-L2 SAME    → SAME    Không đổi · PID NEW000171
+19:36:33 H089-L2 SAME    → SAME    Không đổi · PID NEW000172
+19:36:35 H090-L2 SAME    → SAME    Không đổi · PID NEW000173
+19:36:37 H091-L2 SAME    → SAME    Không đổi · PID NEW000174
+19:36:39 H092-L2 SAME    → SAME    Không đổi · PID NEW000175
+19:36:41 H093-L2 SAME    → SAME    Không đổi · PID NEW000176
+19:36:43 H094-L2 SAME    → SAME    Không đổi · PID NEW000177
+19:36:45 H095-L2 SAME    → SAME    Không đổi · PID NEW000178
+19:36:48 H096-L2 SAME    → SAME    Không đổi · PID NEW000179
+19:36:50 H097-L2 SAME    → SAME    Không đổi · PID NEW000180
+19:36:52 H098-L2 SAME    → SAME    Không đổi · PID NEW000181
+19:36:54 H099-L2 SAME    → SAME    Không đổi · PID NEW000182
+19:36:56 H100-L2 SAME    → SAME    Không đổi · PID NEW000183
+19:36:56 === Nhóm F (file) ===
+19:36:56 F01 → ERROR ReviewRequired: Chưa có thư mục của ngày hôm nay: C:\Users\User\AppData\Local\Temp\tmpmswa | ĐẠT
+19:36:56 F02 → ERROR ReviewRequired: Thư mục C:\Users\User\AppData\Local\Temp\tmpmswagn8r\empty\19-11-2026 chưa | ĐẠT
+19:36:56 F03 → ERROR ReviewRequired: Thư mục C:\Users\User\AppData\Local\Temp\tmpmswagn8r\onlyerr\19-11-2026 ch | ĐẠT
+19:36:56 F04 → ERROR ReviewRequired: Thư mục C:\Users\User\AppData\Local\Temp\tmpmswagn8r\onlytmp\19-11-2026 ch | ĐẠT
+19:36:56 F05 → ERROR ReviewRequired: Không đọc được file Excel ds.xlsx: file hỏng hoặc không phải .xlsx (BadZip | ĐẠT
+19:36:56 F06 → ERROR ReviewRequired: Không tìm thấy hàng tiêu đề (cần cột Patient ID và National ID). | ĐẠT
+19:36:57 F07 → ERROR ReviewRequired: File không có dòng dữ liệu. | ĐẠT
+19:36:57 F08 → ERROR ReviewRequired: Không tìm thấy hàng tiêu đề (cần cột Patient ID và National ID). | ĐẠT
+19:36:57 F09 → ERROR ReviewRequired: Không tìm thấy hàng tiêu đề (cần cột Patient ID và National ID). | ĐẠT
+19:36:57 F10 → SAME Đọc được 1 dòng, 21 cột | ĐẠT
+19:36:57 F11 → SAME Đọc được 2 dòng, 21 cột | ĐẠT
+19:36:58 F12 → SAME Đọc được 3 dòng, 21 cột | ĐẠT
+19:36:58 F13 → ERROR ReviewRequired: Không tìm thấy hàng tiêu đề (cần cột Patient ID và National ID). | ĐẠT
+19:36:58 F14 → ERROR ReviewRequired: Chưa có thư mục của ngày hôm nay: C:\Users\User\AppData\Local\Temp\tmpmswa | ĐẠT
+19:36:58 === Nhóm G (môi trường) ===
+19:37:08 G01 CREATE → CREATE Đã tạo · PID NEW000001 · Title, Sex, Ngày sinh, Nationality, Địa chỉ | ĐẠT
+19:37:20 G02 CREATE → CREATE Đã tạo · PID NEW000001 · Title, Sex, Ngày sinh, Nationality, Địa chỉ | ĐẠT
+19:37:28 G03 CREATE → CREATE Đã tạo · PID NEW000001 · Title, Sex, Ngày sinh, Nationality, Địa chỉ | ĐẠT
+19:37:38 G04 CREATE → CREATE Đã tạo · PID NEW000001 · Title, Sex, Ngày sinh, Nationality, Địa chỉ | ĐẠT
+19:37:53 G05 ERROR → ERROR ReviewRequired: Hết thời gian chờ: control pid-search [cửa sổ OH đang THU NHỎ (RPA không điều khiển  | ĐẠT
+19:38:00 G06 ERROR → ERROR ReviewRequired: Mất kết nối: cửa sổ OH đã bị đóng. Mở lại OHDemo.exe rồi chạy lại; dòng này chưa xử  | ĐẠT
+19:38:05 G07 ERROR → ERROR ReviewRequired: Đã dừng; dòng này chưa xử lý xong. | ĐẠT
+19:38:05 G08 SAME → SAME Đã ghi 2 dòng, lý do và số dòng đúng | ĐẠT
+19:38:06 Xong: 468 ca, ĐẠT 468, KHÔNG ĐẠT 0

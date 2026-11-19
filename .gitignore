@@ -28,3 +28,8 @@ __pycache__/
 /in/
 /Prototype/In_Phieu/thu_nghiem/
 phieu_in/
+
+# Dữ liệu cá nhân dùng khi quay demo
+Prototype/Demo/rieng_tu.json
+Prototype/RPA/kiem_thu/_ban_truoc_sua/
+Prototype/RPA/kiem_thu/_tmp/

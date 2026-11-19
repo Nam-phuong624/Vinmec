@@ -24,44 +24,6 @@ namespace OHDemo
         }
     }
 
-    class AddressForm : Form
-    {
-        public TextBox Province, Ward, Street;
-        public Button Apply, Cancel;
-        public bool Applied;
-        public string Value
-        {
-            get { return string.Join(", ", new[] { Street.Text.Trim(), Ward.Text.Trim(), Province.Text.Trim() }.Where(s => s != "").ToArray()); }
-        }
-
-        public AddressForm()
-        {
-            Name = "address-dialog"; Text = "Add Address"; Font = new Font("Segoe UI", 10f);
-            FormBorderStyle = FormBorderStyle.FixedDialog; MaximizeBox = false; MinimizeBox = false; ShowInTaskbar = false;
-            ClientSize = new Size(460, 270); BackColor = Color.White;
-            string[] labels = { "Tỉnh / Thành phố", "Phường / Xã", "Số nhà / Đường / Thôn" };
-            string[] names = { "address-province", "address-ward", "address-street" };
-            TextBox[] boxes = new TextBox[3];
-            for (int i = 0; i < 3; i++)
-            {
-                Controls.Add(new Label { Text = labels[i], Left = 20, Top = 16 + i * 66, Width = 400, ForeColor = Color.FromArgb(110, 118, 130) });
-                boxes[i] = new TextBox { Name = names[i], AccessibleName = labels[i], Left = 20, Top = 40 + i * 66, Width = 420, MaxLength = 250 };
-                Controls.Add(boxes[i]);
-            }
-            Province = boxes[0]; Ward = boxes[1]; Street = boxes[2];
-            Apply = new Button { Name = "apply-address", AccessibleName = "Apply", Text = "Apply", Left = 340, Top = 220, Width = 100, Height = 32 };
-            Cancel = new Button { Name = "cancel-address", AccessibleName = "Cancel", Text = "Cancel", Left = 230, Top = 220, Width = 100, Height = 32 };
-            Apply.Click += delegate
-            {
-                if (Province.Text.Trim() == "" || Street.Text.Trim() == "") { Text = "Add Address — nhập Tỉnh/Thành phố và Số nhà/Đường (Phường/Xã có thể trống)"; return; }
-                Applied = true; Close();
-            };
-            Cancel.Click += delegate { Close(); };
-            Controls.Add(Apply); Controls.Add(Cancel);
-            AcceptButton = Apply; CancelButton = Cancel;
-        }
-    }
-
     class MainForm : Form
     {
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
@@ -78,7 +40,9 @@ namespace OHDemo
         bool editing, demoRunning, stopDemo, nameConfirmed = true;
         List<string> draftAddr = new List<string>();
         string ethnicDraft = "";
-        AddressForm addrDlg;
+        Panel addrPanel;                       // khung ô địa chỉ mở rộng ngay trong trang Edit (bấm +)
+        List<Control> belowAddr = new List<Control>();
+        bool addrOpen;
         int y;
         Dictionary<string, Control> f = new Dictionary<string, Control>();
 
@@ -93,6 +57,13 @@ namespace OHDemo
         string notFound;      // != null: vừa tìm mà không có hồ sơ → để trống, không thông báo
         Panel bottomBar, tabsPanel;
         int pidSeq;
+
+        // Enter gửi vào ô tìm kiếm luôn kích hoạt tìm kiếm, kể cả khi ô chưa có tiêu điểm (RPA chạy nền gửi phím thẳng vào ô).
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter && searchBox != null && msg.HWnd == searchBox.Handle) { DoSearch(); return true; }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
 
         public MainForm(string[] args)
         {
@@ -286,7 +257,6 @@ namespace OHDemo
                 else
                 {
                     nameLbl.Text = "Chưa chọn bệnh nhân"; infoLbl.Text = "Nhập PID hoặc tên vào ô tìm kiếm phía trên.";
-                    Lbl("Nhập PID hoặc tên bệnh nhân vào ô tìm kiếm, rồi nhấn Enter.", 20, 30, 700, Grey, F, ContentAlignment.MiddleLeft, null);
                 }
             }
             else
@@ -484,11 +454,13 @@ namespace OHDemo
             Lbl("Unspecified", 306, y, 120, Ink, F, ContentAlignment.MiddleLeft, null);
             Lbl("Click + to add new email address.", 440, y, 400, Grey, new Font("Segoe UI", 10f, FontStyle.Italic), ContentAlignment.MiddleLeft, null); y += 40;
             RowLabel("Addresses", true);
-            Small("edit-add-address", "+", 262, 34).Click += delegate { OpenAddress(); };
+            Small("edit-add-address", "+", 262, 34).Click += delegate { SetAddressOpen(!addrOpen); };
             body.Controls.Add(new CheckBox { Name = "edit-address-temporary", Text = "Temporary", Left = 306, Top = y, Width = 110 });
             addrInfo = Lbl("", 420, y, 480, Grey, new Font("Segoe UI", 10f, FontStyle.Italic), ContentAlignment.MiddleLeft, "edit-address-info");
             addrInfo.AutoSize = false; addrInfo.Height = 28;
             RefreshAddr(); y += 44;
+            BuildAddressPanel(y);
+            int belowStart = body.Controls.Count;   // mọi control từ đây trở xuống sẽ dời xuống khi khung địa chỉ mở
 
             Section("Personal Details");
             RowLabel("Nationality", true); Cb("edit-nationality", new[] { "Việt Nam", "Khác" }, p.Nationality, 262, 300); y += 40;
@@ -505,6 +477,7 @@ namespace OHDemo
             Cb("edit-occupation", new[] { "Unknown", "Nhân viên văn phòng", "Công nhân", "Nông dân", "Giáo viên", "Hưu trí" }, p.Occupation, 262, 300); y += 40;
             Section("Employment Details");
             y += 20;
+            belowAddr = body.Controls.Cast<Control>().Skip(belowStart).ToList();
         }
 
         void StyleStatus()
@@ -597,19 +570,46 @@ namespace OHDemo
             Say("Đã lưu hồ sơ " + p.Pid + ".");
         }
 
-        void OpenAddress()
+        // Bấm "+" ở Addresses: các ô nhập mở rộng ngay bên dưới (không tạo cửa sổ mới); các mục phía dưới dời xuống.
+        void BuildAddressPanel(int top)
         {
-            if (addrDlg != null) return;
-            addrDlg = new AddressForm { Owner = this, StartPosition = FormStartPosition.Manual };
-            addrDlg.Location = new Point(Left + Math.Max(0, (Width - addrDlg.Width) / 2), Top + Math.Max(0, (Height - addrDlg.Height) / 2));
-            Enabled = false;
-            addrDlg.FormClosed += delegate
+            addrOpen = false;
+            addrPanel = new Panel { Name = "edit-address-panel", Left = 262, Top = top - 4, Width = 640, Height = 168, BackColor = Color.FromArgb(247, 248, 249), BorderStyle = BorderStyle.FixedSingle, Visible = false };
+            string[] names = { "edit-address-province", "edit-address-ward", "edit-address-street" };
+            string[] labels = { "Tỉnh / Thành phố", "Phường / Xã", "Số nhà / Đường / Thôn" };
+            int[][] pos = { new[] { 12, 8, 280 }, new[] { 318, 8, 300 }, new[] { 12, 66, 606 } };
+            for (int i = 0; i < 3; i++)
             {
-                Enabled = true;
-                if (addrDlg.Applied) { draftAddr.Add(addrDlg.Value); RefreshAddr(); }
-                addrDlg = null; Activate();
-            };
-            addrDlg.Show(this);
+                addrPanel.Controls.Add(new Label { Text = labels[i], Left = pos[i][0], Top = pos[i][1], Width = pos[i][2], Height = 20, ForeColor = Grey });
+                TextBox tb = new TextBox { Name = names[i], AccessibleName = names[i], Left = pos[i][0], Top = pos[i][1] + 22, Width = pos[i][2], MaxLength = 250 };
+                addrPanel.Controls.Add(tb); f[names[i]] = tb;
+            }
+            Button add = Btn("edit-address-add", "Add", 12, 124, 100), cancel = Btn("edit-address-cancel", "Cancel", 122, 124, 100);
+            add.BackColor = Blue; add.ForeColor = Color.White;
+            add.Click += delegate { ApplyAddress(); }; cancel.Click += delegate { SetAddressOpen(false); };
+            addrPanel.Controls.Add(add); addrPanel.Controls.Add(cancel); f["edit-address-add"] = add; f["edit-address-cancel"] = cancel;
+            body.Controls.Add(addrPanel); f["edit-address-panel"] = addrPanel;
+        }
+
+        void SetAddressOpen(bool open)
+        {
+            if (addrPanel == null || open == addrOpen) return;
+            addrOpen = open;
+            int delta = addrPanel.Height + 8;
+            // Control đang ẩn không được cập nhật vị trí khi trang cuộn: đặt lại ngay dưới nút "+" trước khi hiện.
+            if (open) addrPanel.Top = f["edit-add-address"].Bottom + 6;
+            addrPanel.Visible = open;
+            foreach (Control c in belowAddr) c.Top += open ? delta : -delta;
+        }
+
+        void ApplyAddress()
+        {
+            string province = T("edit-address-province"), ward = T("edit-address-ward"), street = T("edit-address-street");
+            if (province == "" || street == "") { Say("Nhập Tỉnh/Thành phố và Số nhà/Đường (Phường/Xã có thể trống)."); return; }
+            draftAddr.Add(string.Join(", ", new[] { street, ward, province }.Where(s => s != "").ToArray()));
+            RefreshAddr();
+            foreach (string n in new[] { "edit-address-province", "edit-address-ward", "edit-address-street" }) ((TextBox)f[n]).Clear();
+            SetAddressOpen(false);
         }
 
         // ================= kịch bản demo tự động =================
@@ -651,7 +651,6 @@ namespace OHDemo
             catch (Exception ex) { Say("Demo lỗi: " + ex.Message); }
             finally
             {
-                if (addrDlg != null) addrDlg.Close();
                 demoRunning = false;
             }
         }
@@ -707,13 +706,10 @@ namespace OHDemo
             await Pick("edit-ethnicity", "Kinh");
             await Pick("edit-occupation", "Nhân viên văn phòng");
             await Press((Button)f["edit-add-address"]);
-            if (addrDlg != null)
-            {
-                await TypeInto(addrDlg.Province, "Thành phố Demo");
-                await TypeInto(addrDlg.Ward, "Phường Mới");
-                await TypeInto(addrDlg.Street, "12 Đường Demo");
-                await Mark(addrDlg.Apply); addrDlg.Apply.PerformClick(); await D(700);
-            }
+            await TypeInto((TextBox)f["edit-address-province"], "Thành phố Demo");
+            await TypeInto((TextBox)f["edit-address-ward"], "Phường Mới");
+            await TypeInto((TextBox)f["edit-address-street"], "12 Đường Demo");
+            await Press((Button)f["edit-address-add"]);
             await Step("Bước 6/6 · Save hồ sơ", 400);
             await Press(saveBtn);
             await Step("Hoàn tất · đã tạo và hoàn thiện hồ sơ " + (cur != null ? cur.Pid : "") + ".", 0);
@@ -736,13 +732,10 @@ namespace OHDemo
             await Mark(f["edit-ethnicity"]); ((ComboBox)f["edit-ethnicity"]).SelectedItem = "Kinh"; await D(700);
             await Step("Bước 6/7 · Thêm địa chỉ bằng nút +", 400);
             await Press((Button)f["edit-add-address"]);
-            if (addrDlg != null)
-            {
-                await TypeInto(addrDlg.Province, "Thành phố Demo");
-                await TypeInto(addrDlg.Ward, "Phường Mới");
-                await TypeInto(addrDlg.Street, "12 Đường Demo");
-                await Mark(addrDlg.Apply); addrDlg.Apply.PerformClick(); await D(700);
-            }
+            await TypeInto((TextBox)f["edit-address-province"], "Thành phố Demo");
+            await TypeInto((TextBox)f["edit-address-ward"], "Phường Mới");
+            await TypeInto((TextBox)f["edit-address-street"], "12 Đường Demo");
+            await Press((Button)f["edit-address-add"]);
             await Step("Bước 7/7 · Bấm Save để lưu hồ sơ", 400);
             await Press(saveBtn);
             await Step("Hoàn tất · đã lưu hồ sơ DEMO0001 (xem lại ở chế độ View). Có thể chạy lại demo.", 0);
