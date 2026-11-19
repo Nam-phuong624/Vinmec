@@ -14,3 +14,17 @@ Desktop.ini
 *.swp
 *.swo
 *~
+
+# File build và dữ liệu chạy cục bộ (không đưa lên repo)
+dist/
+build/
+*.exe
+runtime/
+__pycache__/
+*.pyc
+
+# Dữ liệu làm việc có CCCD (giả lập), form đã điền và ảnh phiếu chụp
+/ds bung/
+/in/
+/Prototype/In_Phieu/thu_nghiem/
+phieu_in/
