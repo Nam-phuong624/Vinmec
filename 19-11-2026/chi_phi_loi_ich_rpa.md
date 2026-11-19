@@ -15,7 +15,8 @@ Quy ước: **[Cung cấp]** là số do người phụ trách dự án cung c�
 | Số khách mỗi ngày | 80 – 120 | [Cung cấp] |
 | Gộp, chuẩn hóa Excel và đưa lên OH (làm tay) | 60 giây/khách, gồm cả hai việc | [Cung cấp] |
 | Sau tự động hóa | 10 – 20 giây cho cả danh sách vài trăm người; 2,5 giây/khách khi RPA điền và cập nhật trên OH | [Cung cấp] |
-| Nhân viên điền và kiểm tra trên OH tại quầy, trước khi đưa giấy chỉ định | 2 – 3 phút/khách | [Cung cấp] |
+| Nhân viên điền và kiểm tra trên OH tại quầy, trước khi đưa giấy chỉ định (làm tay) | 2 – 3 phút/khách | [Cung cấp] |
+| Cùng bước đó khi quét CCCD (In_Phieu), nhân viên chỉ soát lại rồi in phiếu | 20 – 30 giây/khách | [Cung cấp, ước tính chưa đo] |
 | Khách tự điền thông tin cá nhân | 5 – 7 phút/khách | [Cung cấp] |
 | Tỷ lệ dòng phải duyệt và nhập tay | khoảng 10% | [Cung cấp, dự tính] |
 | Thời gian duyệt lỗi và xem báo cáo | 15 phút/ngày | [Giả định] |
@@ -43,7 +44,9 @@ Lưu ý:
 
 Công thức: `phút ròng mỗi ngày × 1.250 đ × 300 ngày`.
 
-### Kịch bản A (số chính thức): chỉ tính bước 60 giây
+Lợi ích gồm hai phần độc lập: (1) bước chuẩn bị do RPA_OHDemo thực hiện; (2) bước tại quầy do In_Phieu (quét CCCD) thực hiện. Mỗi phần chỉ tính một lần.
+
+### 3.1. Bước chuẩn bị (RPA_OHDemo): chỉ tính 60 giây
 
 Mỗi khách tiết kiệm 60 giây. Trừ 10% dòng phải nhập tay (không tiết kiệm) và 15 phút duyệt lỗi mỗi ngày.
 
@@ -53,17 +56,27 @@ Mỗi khách tiết kiệm 60 giây. Trừ 10% dòng phải nhập tay (không t
 | 100 | 100 | 90 | 75 | ≈ 28 triệu đ |
 | 120 | 120 | 108 | 93 | ≈ 35 triệu đ |
 
-### Kịch bản B (tiềm năng, chưa xác nhận): bước 2–3 phút tại quầy cũng giảm hoặc bỏ
+### 3.2. Bước tại quầy (In_Phieu, quét CCCD): từ 2–3 phút xuống 20–30 giây
 
-Nếu hồ sơ đã có sẵn trên OH từ hôm trước nên nhân viên không còn phải điền và kiểm tra lại. Cộng thêm 2–3 phút/khách trên 90% số khách.
+Công thức: `khách/ngày × (thời gian cũ − thời gian mới) × 1.250 đ × 300 ngày`. Chưa trừ tỷ lệ CCCD quét lỗi phải làm tay vì chưa có số.
 
-| Khách/ngày | Phút thêm so với A | Phút ròng | Tiền ròng/năm |
+| Khách/ngày | Cũ → mới | Tiết kiệm/khách | Phút tiết kiệm/ngày | Tiền/năm |
+|---|---|---|---|---|
+| 80 | 2 phút → 30 giây | 1,5 phút | 120 | ≈ 45 triệu đ |
+| 100 | 2,5 phút → 25 giây | 2,1 phút | 208 | ≈ 78 triệu đ |
+| 120 | 3 phút → 20 giây | 2,7 phút | 320 | ≈ 120 triệu đ |
+
+Không cộng thêm phần "hồ sơ RPA điền sẵn nên khỏi điền lại" cho cùng khoảng 2–3 phút này, để tránh tính trùng.
+
+### 3.3. Tổng tiết kiệm (3.1 + 3.2)
+
+| Khách/ngày | Bước chuẩn bị (RPA) | Bước quầy (In_Phieu) | Tổng/năm |
 |---|---|---|---|
-| 80 (2 phút) | 144 | 201 | ≈ 75 triệu đ |
-| 100 (2,5 phút) | 225 | 300 | ≈ 113 triệu đ |
-| 120 (3 phút) | 324 | 417 | ≈ 156 triệu đ |
+| 80 | ≈ 21 triệu đ | ≈ 45 triệu đ | **≈ 66 triệu đ** |
+| 100 | ≈ 28 triệu đ | ≈ 78 triệu đ | **≈ 106 triệu đ** |
+| 120 | ≈ 35 triệu đ | ≈ 120 triệu đ | **≈ 155 triệu đ** |
 
-Chỉ đưa kịch bản B vào quyết định sau khi chạy thử và đo thực tế số phút nhân viên tiết kiệm ở quầy.
+Tương đương khoảng 177 – 413 phút (3 – 7 giờ công) mỗi ngày. Khoảng 2/3 mức tiết kiệm đến từ In_Phieu, không phải từ RPA_OHDemo.
 
 ### Lợi ích không quy ra tiền công lễ tân
 - Nếu quét CCCD thay cho việc khách tự điền, mỗi khách bớt tối đa 5–7 phút chờ (tổng 400–840 phút khách mỗi ngày). Đây là trải nghiệm của khách, không phải chi phí nhân sự; chưa đo thời gian quét và xử lý CCCD đọc lỗi nên 5–7 phút là mức trần.
@@ -83,6 +96,8 @@ Cần chú ý:
 ## 5. Độ tin cậy và giới hạn
 
 - Kiểm thử (522 ca, 0 vi phạm, trên OHDemo) chứng minh phần RPA điền vào OH. Xem `Prototype/RPA/KIEM_THU_RPA.md` và `Prototype/RPA/bieu_do/an_toan_rpa.png`.
+- Bộ kiểm thử 522 ca ở trên chỉ áp dụng cho RPA_OHDemo. In_Phieu (đọc CCCD, điền biểu mẫu) chưa có bộ kiểm thử tương đương, trong khi tạo khoảng 2/3 mức tiết kiệm.
+- 20–30 giây/khách ở bước quầy là ước tính, chưa đo; cần bấm giờ trên khách thật, gồm cả CCCD quét lỗi hoặc nhòe và khách phải nhập tay. Nếu khoảng 10% CCCD phải làm tay thì phần tiết kiệm ở bước quầy giảm khoảng 10%.
 - Bước gộp Excel thành file tổng và tạo Excel/VBA chưa được kiểm thử, nhưng tạo phần lớn khoản tiết kiệm. File tổng sai thì RPA vẫn nhập đúng theo dữ liệu sai. Đề xuất so một mẫu danh sách làm tay với kết quả tự động trước khi dùng thật.
 - RPA chưa được thử trên OH thật; OH thật có thể chậm hơn hoặc có trường, hộp thoại mà bản mô phỏng không có.
 - Hoàn tác có giới hạn: chỉ khôi phục hồ sơ đã cập nhật; hồ sơ tạo mới và địa chỉ đã thêm cần người có quyền xử lý.
@@ -92,7 +107,7 @@ Cần chú ý:
 ## 6. Việc cần làm tiếp
 
 1. Chạy thử 3–5 dòng trên OH thật, đo thời gian mỗi khách và tỷ lệ dòng phải duyệt.
-2. Đo số phút nhân viên thực sự tiết kiệm ở quầy để quyết định có dùng kịch bản B không.
+2. Bấm giờ bước quầy với In_Phieu trên khách thật (20–30 giây) và đo tỷ lệ CCCD quét lỗi; kiểm thử độ chính xác của In_Phieu.
 3. Hỏi nhà cung cấp OH về việc tự động hóa giao diện.
 4. Kiểm thử bước gộp Excel bằng một mẫu so sánh với làm tay.
 5. Tắt khóa màn hình và chế độ ngủ trên máy chạy RPA ban đêm.
