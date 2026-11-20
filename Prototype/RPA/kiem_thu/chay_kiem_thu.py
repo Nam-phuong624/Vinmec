@@ -190,8 +190,9 @@ def build_cases():
     year = truth['dob'][-4:]
     add(id='C02S', group='C. Cập nhật (bước chuẩn bị: tạo người gốc)', title='Chuẩn bị cho C02', risk='Tạo người gốc để cập nhật.', raw=dict(raw, dob=f'10/05/{year}'),
         expected='CREATE', truth=dict(truth, dob=f'10/05/{year}'), sev='Cao')
-    add(id='C02', group='C. Cập nhật người đã có', title='Đổi ngày sinh trong cùng năm (10/05 → 20/05)', risk='Cùng người (trùng năm sinh) nhưng ngày sinh khác: phải cập nhật ngày sinh, không tạo người mới.',
-        raw=dict(raw, dob=f'20/05/{year}'), expected='UPDATE', truth=dict(truth, dob=f'20/05/{year}'))
+    add(id='C02', group='C. Cập nhật người đã có', title='Cùng tên và năm sinh nhưng khác ngày/tháng (10/05 → 20/05)', risk='Có thể là người khác hoặc nhập sai ngày: không được tự ghi đè ngày sinh của hồ sơ cũ, cũng không tạo người mới; chuyển người duyệt.',
+        raw=dict(raw, dob=f'20/05/{year}'), expected='ERROR', kw='khác ngày/tháng sinh', side=True, sev='Cao',
+        note='Đổi theo yêu cầu: trước đây ca này mong đợi UPDATE (ghi đè ngày sinh); nay RPA dừng để người duyệt quyết định.')
 
     upd(3, 'Thêm địa chỉ mới', 'Địa chỉ mới được thêm vào danh sách (OH giữ cả địa chỉ cũ).',
         lambda r, t: (dict(r, addr='Số 99 Đường Mới, Phường Mới, Đà Nẵng'), dict(t, addr='Số 99 Đường Mới, Phường Mới, Đà Nẵng')), 'UPDATE')
@@ -249,6 +250,9 @@ def build_cases():
         pre='DEMO0005 "Nguyễn Văn Mẫu" 12/12/1975.', raw=dict(title='Ông', last='Nguyen', middle='Van', given='Mau', dob='12/12/1975', sex='Nam', addr='5 Đường C, Phường D, Thành phố Demo', phone='0900000005', nat='Việt Nam', cccd='079075000008'),
         expected='UPDATE', truth=dict(title='Ông', first='Nguyen', middle='Van', last='Mau', sex='Nam', dob='12/12/1975', phone='0900000005', nat='Việt Nam', addr='5 Đường C, Phường D, Thành phố Demo'), sev='Cao',
         note='Quan sát: tên trong OH có dấu bị ghi đè thành tên không dấu. Nên cân nhắc không ghi đè tên khi chỉ khác dấu.')
+    add(id='D09', group='D. Trùng lặp và nhập nhằng', title='Hồ sơ có sẵn cùng họ tên và năm sinh, khác ngày/tháng sinh', risk='Không ghi đè ngày sinh của DEMO0004 và không tạo hồ sơ thứ hai: chuyển người duyệt.',
+        pre='DEMO0004 "Nguyễn Văn Mẫu" 03/09/1992.', raw=dict(title='Ông', last='Nguyễn', middle='Văn', given='Mẫu', dob='15/09/1992', sex='Nam', addr='Thôn A, Xã B, Tỉnh Demo', phone='0944000009', nat='Việt Nam', cccd='079092000009'),
+        expected='ERROR', kw='khác ngày/tháng sinh', side=True, sev='Cao')
 
     # ---- E. Dữ liệu sai / lỗi / thiếu ----------------------------------------------------------------
     def e(id_, title, risk, over, expected, kw='', sev='Trung bình', note='', truth_over=None, side=None, ok_truth=False):
