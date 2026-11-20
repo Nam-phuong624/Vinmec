@@ -16,7 +16,7 @@
 ## Bệnh nhân chưa có PID (chưa có trong danh sách gói khám)
 
 - Tìm không thấy thì **để trống, không hiện thông báo**. Bấm **+ New Patient** ở thanh tìm kiếm để sang giao diện tạo mới (một trang riêng, ẩn phần tiêu đề hồ sơ).
-- Khung **New Patient** nằm ở góc trên trang (tab nhỏ + khung viền, hàng nhãn căn phải/ô nhập, theo ảnh mẫu) chỉ nhập: tên, năm sinh, số điện thoại. Có kiểm tra trùng (cùng tên và SĐT).
+- Khung **New Patient** nằm ở góc trên trang (tab nhỏ + khung viền, hàng nhãn căn phải/ô nhập, theo ảnh mẫu) chỉ nhập: tên, năm sinh, số điện thoại. Có kiểm tra trùng: cùng họ tên và (cùng SĐT hoặc cùng năm sinh) thì hỏi "Vẫn tạo mới?" trước khi cấp PID.
 - **Save** → cấp PID mới (`NEW000001`, ...) và mở ngay trang Edit với các trường còn lại **để trống**. Bổ sung rồi Save lần nữa; các trường có dấu * (giới tính, ngày sinh, quốc tịch, ngôn ngữ, dân tộc, nghề nghiệp, điện thoại) phải đủ mới lưu được.
 - Chạy `OHDemo.exe --demo=new` để xem toàn bộ luồng tự chạy.
 - Khung tạo mới dựng theo ảnh một màn hình tìm kiếm khác (OPD Activity) và mô tả của người dùng. Các ô và thứ tự là phỏng đoán, chưa đối chiếu với màn hình tạo mới thật của OH.

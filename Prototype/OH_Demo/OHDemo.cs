@@ -350,8 +350,10 @@ namespace OHDemo
             else if (year.Length != 4 || Age(year) < 0 || Age(year) > 120) err = "Năm sinh phải gồm 4 chữ số hợp lệ.";
             else if (phone.Length < 8 || phone.Any(ch => !char.IsDigit(ch))) err = "Số điện thoại chỉ gồm chữ số (tối thiểu 8).";
             if (err != null) { Say("Chưa lưu · " + err); return; }
-            Patient dup = db.FirstOrDefault(p => p.Phone == phone && Fold(p.FullName) == Fold(first + " " + mid + " " + last).Replace("  ", " "));
-            if (dup != null && !demoRunning && MessageBox.Show(this, "Có thể trùng với " + dup.Pid + " · " + dup.FullName + ". Vẫn tạo mới?", "Kiểm tra trùng", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+            string newName = Fold(first + " " + mid + " " + last).Replace("  ", " ");
+            // Nghi trùng người: cùng họ tên và (cùng số điện thoại HOẶC cùng năm sinh)
+            Patient dup = db.FirstOrDefault(p => Fold(p.FullName) == newName && (p.Phone == phone || (p.Dob ?? "").EndsWith(year)));
+            if (dup != null && !demoRunning && MessageBox.Show(this, "Có thể trùng với " + dup.Pid + " · " + dup.FullName + " · sinh " + dup.Dob + ". Vẫn tạo mới?", "Kiểm tra trùng", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
             pidSeq++;
             Patient p2 = new Patient { Pid = "NEW" + pidSeq.ToString("D6"), First = first, Middle = mid, Last = last, Dob = year, PhoneType = C("new-phone-type"), PhoneCountry = C("new-phone-country"), Phone = phone, Nationality = "", Language = "", Ethnicity = "", Occupation = "" };
             db.Add(p2);

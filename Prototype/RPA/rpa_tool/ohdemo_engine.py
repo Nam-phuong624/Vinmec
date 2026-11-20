@@ -36,6 +36,16 @@ def fold(text: str) -> str:
     return ' '.join(''.join(c for c in t if unicodedata.category(c) != 'Mn').split())
 
 
+def day_month_conflict(oh_dob: str, excel_dob: str) -> bool:
+    """Hai ngày sinh đầy đủ (d/m/yyyy) cùng năm nhưng khác ngày hoặc tháng: có thể là hai người khác nhau.
+    Nếu OH chỉ có năm/tháng (không đủ ngày) thì không đủ căn cứ để coi là mâu thuẫn."""
+    def parts(text):
+        p = str(text or '').strip().split('/')
+        return tuple(int(x) for x in p) if len(p) == 3 and all(x.strip().isdigit() for x in p) else None
+    a, b = parts(oh_dob), parts(excel_dob)
+    return a is not None and b is not None and a[2] == b[2] and a[:2] != b[:2]
+
+
 def find_window() -> int | None:
     found = []
 
@@ -412,6 +422,10 @@ class OhDemoRPA:
                 raise ReviewRequired('Có ' + str(len(same_year)) + ' hồ sơ cùng tên và năm sinh (' + ', '.join(r['pid'] for r in same_year) + '); chọn tay.')
             if not same_year and any(r['phone'] == rec['phone'] for r in matches):
                 raise ReviewRequired('Trùng tên và số điện thoại nhưng khác năm sinh; kiểm tra tay.')
+            if same_year and day_month_conflict(same_year[0]['dob'], rec['dob']):
+                raise ReviewRequired(f'Hồ sơ {same_year[0]["pid"]} cùng họ tên và năm sinh nhưng khác ngày/tháng sinh '
+                                     f'(OH: {same_year[0]["dob"]}; Excel: {rec["dob"]}); có thể là người khác hoặc nhập sai ngày; '
+                                     'kiểm tra tay, RPA không tự ghi đè.')
             check()
             if same_year:
                 pid = same_year[0]['pid']

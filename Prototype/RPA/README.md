@@ -14,7 +14,8 @@ Từ mã nguồn: `python .\scripts\start.py` (cần `pip install -r requirement
 
 1. Tìm theo họ tên (`Patient Last Name` = họ, `Middle` = đệm, `Given` = tên).
 2. Chỉ lấy kết quả **trùng đúng họ tên (không phân biệt dấu/hoa thường)**; trong đó:
-   - **Trùng năm sinh (1 hồ sơ):** mở hồ sơ, so với Excel và **cập nhật các trường khác** (Title, họ/đệm/tên, giới tính, ngày sinh đầy đủ, điện thoại, quốc tịch, địa chỉ). Không có gì khác thì báo "Không đổi".
+   - **Trùng năm sinh (1 hồ sơ) và cùng ngày/tháng sinh (hoặc OH chưa có ngày/tháng):** mở hồ sơ, so với Excel và **cập nhật các trường khác** (Title, họ/đệm/tên, giới tính, ngày sinh đầy đủ, điện thoại, quốc tịch, địa chỉ). Không có gì khác thì báo "Không đổi".
+   - **Trùng họ tên và năm sinh nhưng khác ngày/tháng sinh:** có thể là người khác hoặc nhập sai ngày, RPA **không tự ghi đè và không tạo hồ sơ mới**; ghi lỗi để người duyệt xử lý tay.
    - **Không có hồ sơ nào trùng năm sinh:** tạo bệnh nhân mới (chỉ nhập tên, năm sinh, SĐT) → OH cấp PID → bổ sung các trường còn lại ở trang Edit → Save.
    - **Nhiều hồ sơ cùng tên và năm sinh**, hoặc **trùng tên + SĐT nhưng khác năm sinh:** không đoán, ghi lỗi để xử lý tay.
 3. Địa chỉ Excel tách theo dấu phẩy (cấp cuối = tỉnh/thành, áp chót = phường/xã). Địa chỉ mới **được thêm** nếu chưa có, không xóa địa chỉ cũ. Địa chỉ chỉ có 1 phần thì "Cần điền tay".
